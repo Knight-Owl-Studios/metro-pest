@@ -1,0 +1,55 @@
+.hero {
+  width: 100vw;
+  min-height: calc(100vh - 70px);
+
+  position: relative;
+
+  background-color: transparent;
+}
+
+.hero_bg {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero__content {
+  text-align: center;
+  padding: 2em 10vw 0;
+}
+
+@media (min-width: 899px) {
+  .hero__content {
+    position: absolute;
+    top: calc(35vh - 60px);
+    right: 5vw;
+    max-width: 50vw;
+    padding: 0;
+  }
+}
+
+.hero__heading {
+  margin: 0 0 18px;
+  font-size: 10vw;
+}
+
+@media (min-width: 899px) {
+  .hero__heading {
+    font-size: 3.35vw;
+  }
+}
+
+p.hero__body {
+  font-size: 6vw;
+}
+
+@media (min-width: 899px) {
+  p.hero__body {
+    font-size: 1.95vw;
+  }
+}
+

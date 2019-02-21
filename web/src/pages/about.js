@@ -16,19 +16,12 @@ export const query = graphql`
       id
       _id
       title
-      _rawBody
     }
     people: allSanityPerson {
       edges {
         node {
           id
-          image {
-            asset {
-              _id
-            }
-          }
           name
-          _rawBio
         }
       }
     }

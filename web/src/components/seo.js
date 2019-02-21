@@ -6,15 +6,16 @@ import { StaticQuery, graphql } from 'gatsby'
 const detailsQuery = graphql`
   query SEOQuery {
     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
-      title
-      description
-      keywords
-      author
+      seo {
+        title
+        description
+        keywords
+      }
     }
   }
 `
 
-function SEO ({ description, lang, meta, keywords = [], title }) {
+function SEO({ description, lang, meta, keywords = [], title, ogTitle, ogDescription, ogImage }) {
   return (
     <StaticQuery
       query={detailsQuery}
@@ -37,11 +38,11 @@ function SEO ({ description, lang, meta, keywords = [], title }) {
               },
               {
                 property: 'og:title',
-                content: title
+                content: ogTitle
               },
               {
                 property: 'og:description',
-                content: metaDescription
+                content: ogDescription
               },
               {
                 property: 'og:type',
@@ -57,7 +58,7 @@ function SEO ({ description, lang, meta, keywords = [], title }) {
               },
               {
                 name: 'twitter:title',
-                content: title
+                content: ogTitle
               },
               {
                 name: 'twitter:description',
@@ -67,9 +68,9 @@ function SEO ({ description, lang, meta, keywords = [], title }) {
               .concat(
                 keywords && keywords.length > 0
                   ? {
-                    name: 'keywords',
-                    content: keywords.join(', ')
-                  }
+                      name: 'keywords',
+                      content: keywords.join(', ')
+                    }
                   : []
               )
               .concat(meta)}

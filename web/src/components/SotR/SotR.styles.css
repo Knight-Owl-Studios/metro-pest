@@ -1,0 +1,25 @@
+@media (min-width: 899px) {
+  .sotr {
+    text-align: center;
+  }
+}
+
+.sotr_bg {
+  width: 100%;
+}
+
+.sotr__heading {
+  margin: 0 0 37px;
+}
+
+@media (min-width: 899px) {
+  .sotr__content {
+    margin: 0 10vw;
+  }
+}
+
+@media (min-width: 1440px) {
+  .sotr__content {
+    margin: 0 150px;
+  }
+}

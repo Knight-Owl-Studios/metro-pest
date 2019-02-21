@@ -1,18 +1,33 @@
 export default {
-  name: 'page',
-  title: 'Page',
-  type: 'document',
+  name: "page",
+  title: "Page",
+  type: "document",
   liveEdit: false,
   fields: [
     {
-      name: 'title',
-      title: 'Title',
-      type: 'string'
+      name: "title",
+      title: "Title",
+      type: "string"
     },
     {
-      name: 'body',
-      title: 'Body',
-      type: 'blockContent'
+      name: "body",
+      title: "Body",
+      type: "blockContent"
+    },
+    {
+      name: "headingImage",
+      title: "Heading Image",
+      type: "image"
+    },
+    {
+      name: "seo",
+      title: "SEO settings",
+      type: "seo"
+    },
+    {
+      name: "social",
+      title: "Social Share",
+      type: "social"
     }
   ]
-}
+};

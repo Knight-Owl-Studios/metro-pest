@@ -1,35 +1,33 @@
-import MdSettings from 'react-icons/lib/md/settings'
+import MdSettings from "react-icons/lib/md/settings";
 
 export default {
-  name: 'siteSettings',
-  title: 'Site Settings',
-  type: 'document',
+  name: "siteSettings",
+  title: "Site Settings",
+  type: "document",
   liveEdit: false,
   icon: MdSettings,
   fields: [
     {
-      name: 'title',
-      title: 'Title',
-      type: 'string'
+      name: "phone",
+      title: "Phone Number",
+      description: "Phone number to show in the nav bar",
+      type: "reference",
+      to: [{ type: "phonenumber" }]
     },
     {
-      name: 'description',
-      title: 'Description',
-      type: 'text'
-    },
-    {
-      name: 'keywords',
-      title: 'Keywords',
-      type: 'array',
-      of: [{ type: 'string' }],
-      options: {
-        layout: 'tags'
-      }
-    },
-    {
-      name: 'author',
-      title: 'Author',
-      type: 'string'
+      name: "seo",
+      title: "Default SEO Settings",
+      type: "seo"
     }
-  ]
-}
+  ],
+  preview: {
+    select: {
+      title: "title"
+    },
+    prepare() {
+      return {
+        title: "Site Settings"
+      };
+    }
+  }
+};

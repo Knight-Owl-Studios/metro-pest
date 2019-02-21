@@ -1,103 +1,119 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from '../lib/helpers'
-import BlogPostPreviewGrid from '../components/blog-post-preview-grid'
-import Container from '../components/container'
-import GraphQLErrorList from '../components/graphql-error-list'
-import ProjectPreviewGrid from '../components/project-preview-grid'
-import SEO from '../components/seo'
-import Layout from '../containers/layout'
+import React from 'react';
+import Helmet from 'react-helmet';
+import { graphql } from 'gatsby';
+import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from '../lib/helpers';
+import BlogPostPreviewGrid from '../components/blog-post-preview-grid';
+import Container from '../components/container';
+import GraphQLErrorList from '../components/graphql-error-list';
+import SEO from '../components/seo';
+import Layout from '../containers/layout';
+
+import Hero from "../components/Hero";
+import About from "../components/About";
+import SotR from "../components/SotR";
+import Safety from "../components/Safety";
+import Contact from "../components/Contact";
 
 export const query = graphql`
   query IndexPageQuery {
     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
-      title
-      description
-      keywords
+      seo {
+        title
+        description
+        keywords
+      }
     }
-
-    projects: allSanityProject(
-      limit: 6
-      sort: { fields: [publishedAt], order: DESC }
-    ) {
-      edges {
-        node {
-          id
-          mainImage {
-            crop {
-              _key
-              _type
-              top
-              bottom
-              left
-              right
-            }
-            hotspot {
-              _key
-              _type
-              x
-              y
-              height
-              width
-            }
-            asset {
-              _id
-            }
-            alt
+    home: sanityHomePage(_id: { regex: "/(drafts.|)homePage/" }) {
+      cta {
+        heading
+        cta {
+          number {
+            number
           }
-          title
-          _rawExcerpt
-          slug {
-            current
+          heading
+        }
+      }
+      hero {
+        image {
+          asset {
+            fluid {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        heading
+        body {
+          _type
+          style
+          children {
+            _key
+            _type
+            text
+          }
+        }
+        cta {
+          heading
+          number {
+            number
           }
         }
       }
-    }
-
-    posts: allSanityPost(
-      limit: 6
-      sort: { fields: [publishedAt], order: DESC }
-    ) {
-      edges {
-        node {
-          id
-          publishedAt
-          mainImage {
-            crop {
-              _key
-              _type
-              top
-              bottom
-              left
-              right
-            }
-            hotspot {
-              _key
-              _type
-              x
-              y
-              height
-              width
-            }
-            asset {
-              _id
-            }
-            alt
-          }
-          title
-          _rawExcerpt
-          slug {
-            current
+      needs {
+        heading
+        body {
+          _type
+          children {
+            _key
+            _type
+            text
           }
         }
+      }
+      safety {
+        heading
+        body {
+          _type
+          children {
+            _key
+            _type
+            text
+          }
+        }
+        image {
+          asset {
+            fluid {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+      }
+      sotr {
+        heading
+        body {
+          _type
+          children {
+            _type
+            _key
+            text
+          }
+        }
+        image {
+          asset {
+            fluid {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+      }
+      seo {
+        _type
+        title
       }
     }
   }
 `
 
-const IndexPage = props => {
-  const { data, errors } = props
-
+export const IndexPage = ({ data, errors }) => {
   if (errors) {
     return (
       <Layout>
@@ -106,38 +122,22 @@ const IndexPage = props => {
     )
   }
 
-  const site = (data || {}).site
-  const postNodes = (data || {}).posts ? mapEdgesToNodes(data.posts).filter(filterOutDocsWithoutSlugs) : []
-  const projectNodes = (data || {}).projects ? mapEdgesToNodes(data.projects).filter(filterOutDocsWithoutSlugs) : []
+  const { hero, needs, sotr, safety, cta } = data.home;
 
-  if (!site) {
-    throw new Error(
-      'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
-    )
-  }
-
+  const { title } = data.site.seo;
   return (
-    <Layout>
-      <SEO title={site.title} description={site.description} keywords={site.keywords} />
-      <Container>
-        <h1 hidden>Welcome to {site.title}</h1>
-        {projectNodes && (
-          <ProjectPreviewGrid
-            title='Latest projects'
-            nodes={projectNodes}
-            browseMoreHref='/projects/'
-          />
-        )}
-        {postNodes && (
-          <BlogPostPreviewGrid
-            title='Latest blog posts'
-            nodes={postNodes}
-            browseMoreHref='/blog/'
-          />
-        )}
-      </Container>
+    <Layout id="homePage">
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
+
+      <Hero {...hero} />
+      <About {...needs} />
+      <SotR {...sotr} />
+      <Safety {...safety} />
+      <Contact {...cta}/>
     </Layout>
-  )
-}
+  );
+};
 
 export default IndexPage
