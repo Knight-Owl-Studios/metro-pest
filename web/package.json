@@ -1,8 +1,8 @@
 {
   "private": false,
-  "name": "example-company-website-gatsby-sanity-combo-frontend",
+  "name": "metro-pest-webiste",
   "version": "1.0.0",
-  "author": "Sanity <hello@sanity.io>",
+  "author": "TJ Simons <t.simons88@gmail.com>",
   "scripts": {
     "build": "gatsby build",
     "deploy": "npm run now-deploy",

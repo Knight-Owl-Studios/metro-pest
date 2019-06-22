@@ -5,7 +5,7 @@
     {
       "src": "web/package.json",
       "use": "@now/static-build",
-      "config": { "distDir": "web/public" }
+      "config": { "distDir": "public" }
     }
   ],
   "alias": ["metro-pest-website.now.sh"]
