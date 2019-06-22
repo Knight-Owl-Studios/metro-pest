@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import Img from 'gatsby-image';
 
 import BlockContent from '../block-content';
-import "./SotR.styles.css";
+import styles from "./styles.module.css";
 
 const SotR = ({ heading, body, image, phone }) => (
-  <section className="sotr dark-bg">
-    <Img className="sotr_bg" fluid={image.asset.fluid} />
-    <div className="sotr__content section">
-      <h2 className="sotr__heading">{heading}</h2>
-      <BlockContent className="sotr__body" block={body} />
+  <section className={styles.base}>
+    <Img className={styles.bg} fluid={image.asset.fluid} />
+    <div className={styles.content}>
+      <h2 className={styles.heading}>{heading}</h2>
+      <BlockContent blocks={body} />
     </div>
   </section>
 );

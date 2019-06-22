@@ -1,0 +1,39 @@
+@import '../../styles/media-queries.css';
+@import '../../styles/layout.css';
+@import '../typography.module.css';
+
+.base {
+  @extend %section;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.content {
+  @media (--media-min-large) {
+    width: 38vw;
+  }
+
+  p {
+    margin: 40px 0 0;
+  }
+}
+
+.heading {
+  @extend .title2;
+  margin: 0 0 24px;
+}
+
+.img {
+  img {
+    position: static !important;
+  }
+
+  @media (--media-min-large) {
+    position: absolute;
+
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+  }
+}

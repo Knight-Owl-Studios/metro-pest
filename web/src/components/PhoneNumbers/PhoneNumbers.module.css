@@ -1,49 +1,42 @@
-.phone-numbers {
+@import '../../styles/media-queries.css';
+
+.container {
   display: flex;
   flex-flow: column nowrap;
   margin: 37px 0 0;
   text-align: center;
-}
 
-@media (min-width: 899px) {
-  .phone-numbers {
+  @media (--media-min-large) {
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-around;
   }
+}
 
-  .phone-numbers--vertical {
+.vertical {
+  @media (--media-min-large) {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
   }
 }
 
-.phone-number {
+.number {
   margin: 25px 0 0;
 }
 
-.phone__heading {
-  font-size: 7.5vw;
-}
+.heading {
+  font-size: 24px;
+  font-weight: bold;
 
-@media (min-width: 899px) {
-  .phone__heading {
-    font-size: 1.68vw;
+  @media (--media-min-large) {
     margin-bottom: 7px;
   }
 }
 
-.phone__link {
-  font-size: 6vw;
-  font-weight: 600;
+.link {
+  font-size: 24px;
   line-height: 1.5;
 
   text-decoration: none;
-}
-
-@media (min-width: 899px) {
-  .phone__link {
-    font-size: 1.68vw;
-  }
 }

@@ -1,7 +1,10 @@
 import BaseBlockContent from '@sanity/block-content-to-react'
 import React from 'react'
+import classNames from 'classnames';
+
 import Figure from './figure'
 import Slideshow from './slideshow'
+
 
 import typography from '../typography.module.css'
 
@@ -40,6 +43,6 @@ const serializers = {
   }
 }
 
-const BlockContent = ({ blocks }) => <BaseBlockContent blocks={blocks} serializers={serializers} />
+const BlockContent = ({ blocks, className }) => <BaseBlockContent blocks={blocks} serializers={serializers} />
 
 export default BlockContent

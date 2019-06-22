@@ -14,7 +14,6 @@ export default {
     {
       name: "image",
       title: "Image",
-      fields: [{ name: "alt", title: "Image description", type: "text" }],
       type: "image"
     },
     {

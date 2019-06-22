@@ -5,26 +5,27 @@ import createSchema from "part:@sanity/base/schema-creator";
 import schemaTypes from "all:part:@sanity/base/schema-type";
 
 // We import object and document schemas
-import blockContent from "./blockContent";
-import blockText from "./blockText";
-import category from "./category";
-import companyInfo from "./companyInfo";
-import figure from "./figure";
-import mainImage from "./mainImage";
+import blockContent from "./text/blockContent";
+import blockText from "./text/blockText";
+import category from "./blog/category";
+import companyInfo from "./objects/companyInfo";
+import figure from "./images/figure";
+import mainImage from "./images/mainImage";
 import page from "./page";
-import person from "./person";
-import post from "./post";
-import postAuthor from "./postAuthor";
-import slideshow from "./slideshow";
-import seo from "./seo";
-import social from "./social";
+import person from "./objects/person";
+import post from "./blog/post";
+import postAuthor from "./blog/postAuthor";
+import slideshow from "./images/slideshow";
+import seo from "./objects/seo";
+import social from "./objects/social";
 import servicePlan from "./servicePlan";
-import pest from "./pest";
+import pest from "./objects/pest";
 import siteSettings from "./siteSettings";
+import phoneNumber from "./objects/phoneNumber";
+import phoneWithHeading from "./objects/phone-with-heading";
+import serviceLocations from "./objects/serviceLocations";
+import socialProfile from "./objects/social-profile";
 import homepage from "./homepage";
-import phoneNumber from "./phoneNumber";
-import serviceLocations from "./serviceLocations";
-import socialProfile from "./social-profile";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -53,9 +54,9 @@ export default createSchema({
     siteSettings,
     homepage,
     phoneNumber,
+    phoneWithHeading,
     serviceLocations,
     socialProfile
-
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
   ])

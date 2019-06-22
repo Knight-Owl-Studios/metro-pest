@@ -3,7 +3,15 @@ import MdBusiness from "react-icons/lib/md/business";
 import MdSettings from "react-icons/lib/md/settings";
 import FaFileO from "react-icons/lib/fa/file-o";
 
-const hiddenTypes = ["category", "companyInfo", "page", "person", "post", "siteSettings", "homePage"];
+const hiddenTypes = [
+  "category",
+  "companyInfo",
+  "page",
+  "person",
+  "post",
+  "siteSettings",
+  "homePage"
+];
 
 export default () =>
   S.list()

@@ -1,0 +1,13 @@
+@import './vars.css';
+
+%dark-bg {
+  h1, h2, h3, h4, h5, p, li, a, a:link {
+    color: #fff;
+  }
+}
+
+%dark-section {
+  @extend %dark-bg;
+
+  background: var(--color-bg-dark);
+}

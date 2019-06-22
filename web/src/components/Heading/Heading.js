@@ -1,11 +1,18 @@
-import React from "react";
-import "./heading.css";
+import React from 'react'
+import PropTypes from 'prop-types'
+import Img from 'gatsby-image'
+import styles from './heading.module.css'
 
 const Heading = ({ title, image }) => (
-  <header className="section">
-    <img src={image} alt="" />
-    <h1>{title}</h1>
+  <header className={styles.container}>
+    <Img className={styles.img} fluid={image} alt="" />
+    <h1 className={styles.heading}>{title}</h1>
   </header>
-);
+)
 
-export default Heading;
+Heading.propTypes = {
+  title: PropTypes.string,
+  image: PropTypes.shape({}) // gatsby image
+}
+
+export default Heading

@@ -1,0 +1,8 @@
+@import '../typography.module.css';
+
+.container {
+}
+
+.row {
+  @extend .paragraph;
+}

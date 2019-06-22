@@ -10,149 +10,105 @@ export default {
       title: "title",
       type: "string"
     },
+
+    // Hero Section
     {
-      name: "hero",
-      title: "Hero",
-      description: "Top of page content",
-      type: "object",
-      fields: [
+      name: "heroHeading",
+      title: "[Hero] Heading",
+      type: "string"
+    },
+    {
+      name: "heroImage",
+      title: "[Hero] Background Image",
+      type: "image"
+    },
+    {
+      name: "heroBody",
+      title: "[Hero] Body",
+      type: "blockContent"
+    },
+    {
+      name: "heroCta",
+      title: "[Hero] Phone Numbers",
+      type: "array",
+      of: [
         {
-          name: "heading",
-          title: "Heading",
-          type: "string"
-        },
-        {
-          name: "image",
-          title: "Background Image",
-          type: "image"
-        },
-        {
-          name: "body",
-          title: "Body",
-          type: "blockContent"
-        },
-        {
-          name: "cta",
-          title: "Phone Numbers",
-          type: "array",
-          of: [
-            {
-              type: "object",
-              fields: [
-                { type: "string", name: "heading", title: "Heading" },
-                {
-                  name: "number",
-                  title: "Phone Number",
-                  type: "reference",
-                  to: [{ type: "phonenumber" }]
-                }
-              ],
-              preview: {
-                select: {
-                  title: "heading",
-                  subtitle: "number.number"
-                }
-              }
+          type: "phoneWithHeading",
+          preview: {
+            select: {
+              title: "heading",
+              subtitle: "number.number"
             }
-          ]
+          }
         }
       ]
     },
+
+    // Services section
     {
-      name: "needs",
-      title: "Needs Section",
-      type: "object",
-      fields: [
-        {
-          name: "heading",
-          title: "Needs Section Heading",
-          type: "string"
-        },
-        {
-          name: "body",
-          title: "Needs Section Body",
-          type: "blockContent"
-        }
-      ]
+      name: "servicesHeading",
+      title: "[Services] Heading",
+      type: "string"
     },
     {
-      name: "sotr",
-      title: "South of the River",
-      type: "object",
-      fields: [
-        {
-          name: "heading",
-          title: "South of the River Heading",
-          type: "string"
-        },
-        {
-          name: "body",
-          title: "South of the River Body",
-          type: "blockContent"
-        },
-        {
-          name: "image",
-          title: "South of the River Image",
-          type: "image"
-        }
-      ]
+      name: "servicesBody",
+      title: "[Services] Body",
+      type: "blockContent"
+    },
+
+    // About section
+    {
+      name: "aboutHeading",
+      title: "[About] Heading",
+      type: "string"
     },
     {
-      name: "safety",
-      title: "Safety Section",
-      type: "object",
-      fields: [
-        {
-          name: "heading",
-          title: "Safety Heading",
-          type: "string"
-        },
-        {
-          name: "body",
-          title: "Safety Body",
-          type: "blockContent"
-        },
-        {
-          name: "image",
-          title: "Safety Image",
-          type: "image"
-        }
-      ]
+      name: "aboutBody",
+      title: "[About] Body",
+      type: "blockContent"
     },
     {
-      name: "cta",
-      title: "Call to Action",
-      type: "object",
-      fields: [
+      name: "aboutImage",
+      title: "[About] Image",
+      type: "image"
+    },
+
+    // Safety section
+    {
+      name: "safetyHeading",
+      title: "[Safety] Heading",
+      type: "string"
+    },
+    {
+      name: "safetyBody",
+      title: "[Safety] Body",
+      type: "blockContent"
+    },
+    {
+      name: "safetyImage",
+      title: "[Safety] Image",
+      type: "image"
+    },
+
+    // CTA section
+    {
+      name: "ctaHeading",
+      title: "[Call to Action] Heading",
+      type: "string"
+    },
+    {
+      name: "ctaPhone",
+      title: "[Call to Action] Phone Numbers",
+      type: "array",
+      of: [
         {
-          name: "heading",
-          title: "CTA Heading",
-          type: "string"
-        },
-        {
-          name: "cta",
-          title: "Phone Numbers",
-          type: "array",
-          of: [
-            {
-              type: "object",
-              fields: [
-                { type: "string", name: "heading", title: "Heading" },
-                {
-                  name: "number",
-                  title: "Phone Number",
-                  type: "reference",
-                  to: [{ type: "phonenumber" }]
-                }
-              ],
-              preview: {
-                select: {
-                  title: "heading",
-                  subtitle: "number.number"
-                }
-              }
+          type: "phoneWithHeading",
+          preview: {
+            select: {
+              title: "heading",
+              subtitle: "number.number"
             }
-          ]
+          }
         }
       ]
     },

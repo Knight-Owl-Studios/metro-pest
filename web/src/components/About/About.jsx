@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import BlockContent from '../block-content';
+import BlockContent from '../block-content';;
 
-import "./About.styles.css";
+import styles from "./styles.module.css";
 
 const About = ({ heading, body }) => (
-  <section className="about section">
-    <div className="about__content">
-      <h1 className="about__heading">{heading}</h1>
-      <BlockContent  className="about__body" blocks={body} />
+  <section className={styles.about}>
+    <div>
+      <h2 className={styles.heading}>{heading}</h2>
+      <BlockContent blocks={body} />
     </div>
   </section>
 );

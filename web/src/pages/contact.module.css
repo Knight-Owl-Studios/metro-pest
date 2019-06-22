@@ -1,0 +1,39 @@
+@import '../styles/media-queries.css';
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: stretch;
+
+  @media (--media-min-large) {
+    flex-flow: row nowrap;
+  }
+}
+
+.divider {
+  flex: 0 0 10vw;
+  width: 10vw;
+
+  position: relative;
+
+  @media (--media-min-xl) {
+    width: 100px;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 1px;
+    top: 10px;
+    right: 0;
+    bottom: 10px;
+    left: 0;
+    margin: auto;
+    background: #999;
+  }
+}
+
+.column {
+  flex: 1 1 50%;
+}

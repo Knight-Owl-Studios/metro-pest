@@ -1,25 +1,25 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
-import "./PhoneNumbers.styles.css";
+import styles from './PhoneNumbers.module.css'
 
 const PhoneNumbers = ({ numbers, vertical }) => (
   <div
-    className={classNames("phone-numbers", {
-      "phone-numbers--vertical": vertical
+    className={classNames(styles.container, {
+      [styles.vertical]: vertical
     })}
   >
     {numbers.map(n => (
-      <div className="phone-number" key={n.heading}>
-        <h2 className="phone__heading">{n.heading}</h2>
-        <a className="phone__link" href={`tel:${n.number.number}`}>
+      <div className={styles.number} key={n.heading}>
+        <h2 className={styles.heading}>{n.heading}</h2>
+        <a className={styles.link} href={`tel:${n.number.number}`}>
           {n.number.number}
         </a>
       </div>
     ))}
   </div>
-);
+)
 
 PhoneNumbers.propTypes = {
   vertical: PropTypes.bool,
@@ -31,4 +31,4 @@ PhoneNumbers.propTypes = {
   })
 }
 
-export default PhoneNumbers;
+export default PhoneNumbers

@@ -4,3 +4,4 @@
 @custom-media --media-min-large (min-width: 900px);
 @custom-media --media-max-large (max-width: 899px);
 @custom-media --media-min-xl (min-width: 1100px);
+@custom-media --media-min-xxl (min-width: 1440px);

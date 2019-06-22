@@ -1,0 +1,35 @@
+@import '../typography.module.css';
+@import '../../styles/media-queries.css';
+@import '../../styles/layout.css';
+@import '../../styles/dark-theme.css';
+
+.base {
+  @extend %dark-section;
+
+  @media (--media-min-large) {
+    text-align: center;
+  }
+}
+
+.bg {
+  width: 100%;
+}
+
+.heading {
+  @extend .title2;
+
+  margin: 0 0 37px;
+}
+
+.content {
+  @extend %section;
+
+  @media (--media-min-large) {
+    margin: 0 10vw;
+  }
+
+  @media (--media-min-xxl) {
+      margin: 0 150px;
+  }
+}
+

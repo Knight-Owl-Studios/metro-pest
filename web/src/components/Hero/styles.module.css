@@ -1,4 +1,8 @@
-.hero {
+@import '../../styles/dark-theme.css';
+
+.base {
+  @extend %dark-bg;
+
   width: 100vw;
   min-height: calc(100vh - 70px);
 
@@ -7,49 +11,30 @@
   background-color: transparent;
 }
 
-.hero_bg {
+.bg {
   object-fit: cover;
   height: 100%;
   width: 100%;
   display: inline-block;
-  position: absolute;
+  position: absolute !important;
   pointer-events: none;
   z-index: -1;
 }
 
-.hero__content {
+.content {
   text-align: center;
   padding: 2em 10vw 0;
-}
 
-@media (min-width: 899px) {
-  .hero__content {
+  @media (min-width: 899px) {
     position: absolute;
     top: calc(35vh - 60px);
-    right: 5vw;
-    max-width: 50vw;
+    right: 15vw;
+    max-width: 596px;
     padding: 0;
   }
 }
 
-.hero__heading {
+.heading {
   margin: 0 0 18px;
-  font-size: 10vw;
+  display: inline-block;
 }
-
-@media (min-width: 899px) {
-  .hero__heading {
-    font-size: 3.35vw;
-  }
-}
-
-p.hero__body {
-  font-size: 6vw;
-}
-
-@media (min-width: 899px) {
-  p.hero__body {
-    font-size: 1.95vw;
-  }
-}
-

@@ -5,10 +5,13 @@ import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import PeopleGrid from '../components/people-grid'
 import SEO from '../components/seo'
+import Heading from '../components/Heading'
 import Layout from '../containers/layout'
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from '../lib/helpers'
 
-import { responsiveTitle1 } from '../components/typography.module.css'
+import { title1 } from '../components/typography.module.css'
+
+import styles from './internal.module.css'
 
 export const query = graphql`
   query AboutPageQuery {
@@ -16,13 +19,16 @@ export const query = graphql`
       id
       _id
       title
-    }
-    people: allSanityPerson {
-      edges {
-        node {
-          id
-          name
+      _rawBody
+      headingImage {
+        asset {
+          fluid {
+            ...GatsbySanityImageFluid
+          }
         }
+      }
+      seo {
+        title
       }
     }
   }
@@ -40,7 +46,9 @@ const AboutPage = props => {
   }
 
   const page = data && data.page
-  const personNodes = data && data.people && mapEdgesToNodes(data.people).filter(filterOutDocsWithoutSlugs)
+
+  const personNodes =
+    data && data.people && mapEdgesToNodes(data.people).filter(filterOutDocsWithoutSlugs)
 
   if (!page) {
     throw new Error(
@@ -52,12 +60,10 @@ const AboutPage = props => {
     <Layout>
       <SEO title={page.title} />
       <Container>
-        <h1 className={responsiveTitle1}>{page.title}</h1>
-        <BlockContent blocks={page._rawBody || []} />
-        {personNodes &&
-          personNodes.length > 0 && (
-            <PeopleGrid items={personNodes} title="People" />
-          )}
+        <Heading title={page.title} image={page.headingImage.asset.fluid} />
+        <div className={styles.pageContent}>
+          <BlockContent blocks={page._rawBody || []} />
+        </div>
       </Container>
     </Layout>
   )

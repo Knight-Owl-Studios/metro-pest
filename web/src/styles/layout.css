@@ -16,3 +16,11 @@ body {
 html, body, body > div, body > div > div {
   height: 100%;
 }
+
+%section {
+  padding: 14.5vw 7.5vw;
+  max-width: 1440px;
+
+  margin-left: auto;
+  margin-right: auto;
+}

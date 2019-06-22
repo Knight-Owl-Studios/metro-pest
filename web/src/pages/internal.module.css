@@ -1,0 +1,12 @@
+@import '../styles/media-queries.css';
+
+.pageContent {
+  padding: 6vw 4vw;
+  max-width: 968px;
+  margin: 0 auto;
+
+  @media (min-width: 1000px) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}

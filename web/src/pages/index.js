@@ -1,18 +1,18 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import { graphql } from 'gatsby';
-import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from '../lib/helpers';
-import BlogPostPreviewGrid from '../components/blog-post-preview-grid';
-import Container from '../components/container';
-import GraphQLErrorList from '../components/graphql-error-list';
-import SEO from '../components/seo';
-import Layout from '../containers/layout';
+import React from 'react'
+import Helmet from 'react-helmet'
+import { graphql } from 'gatsby'
+import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from '../lib/helpers'
+import BlogPostPreviewGrid from '../components/blog-post-preview-grid'
+import Container from '../components/container'
+import GraphQLErrorList from '../components/graphql-error-list'
+import SEO from '../components/seo'
+import Layout from '../containers/layout'
 
-import Hero from "../components/Hero";
-import About from "../components/About";
-import SotR from "../components/SotR";
-import Safety from "../components/Safety";
-import Contact from "../components/Contact";
+import Hero from '../components/Hero'
+import About from '../components/About'
+import SotR from '../components/SotR'
+import Safety from '../components/Safety'
+import Contact from '../components/Contact'
 
 export const query = graphql`
   query IndexPageQuery {
@@ -24,87 +24,53 @@ export const query = graphql`
       }
     }
     home: sanityHomePage(_id: { regex: "/(drafts.|)homePage/" }) {
-      cta {
-        heading
-        cta {
-          number {
-            number
-          }
-          heading
-        }
-      }
-      hero {
-        image {
-          asset {
-            fluid {
-              ...GatsbySanityImageFluid
-            }
-          }
-        }
-        heading
-        body {
-          _type
-          style
-          children {
-            _key
-            _type
-            text
-          }
-        }
-        cta {
-          heading
-          number {
-            number
+      heroHeading
+      heroImage {
+        asset {
+          fluid {
+            ...GatsbySanityImageFluid
           }
         }
       }
-      needs {
+      _rawHeroBody
+      heroCta {
         heading
-        body {
-          _type
-          children {
-            _key
-            _type
-            text
+        number {
+          number
+        }
+      }
+
+      servicesHeading
+      _rawServicesBody
+
+      aboutHeading
+      _rawAboutBody
+      aboutImage {
+        asset {
+          fluid {
+            ...GatsbySanityImageFluid
           }
         }
       }
-      safety {
-        heading
-        body {
-          _type
-          children {
-            _key
-            _type
-            text
-          }
-        }
-        image {
-          asset {
-            fluid {
-              ...GatsbySanityImageFluid
-            }
+
+      safetyHeading
+      _rawSafetyBody
+      safetyImage {
+        asset {
+          fluid {
+            ...GatsbySanityImageFluid
           }
         }
       }
-      sotr {
+
+      ctaHeading
+      ctaPhone {
+        number {
+          number
+        }
         heading
-        body {
-          _type
-          children {
-            _type
-            _key
-            text
-          }
-        }
-        image {
-          asset {
-            fluid {
-              ...GatsbySanityImageFluid
-            }
-          }
-        }
       }
+
       seo {
         _type
         title
@@ -122,22 +88,33 @@ export const IndexPage = ({ data, errors }) => {
     )
   }
 
-  const { hero, needs, sotr, safety, cta } = data.home;
-
-  const { title } = data.site.seo;
+  const { title } = data.site.seo
   return (
     <Layout id="homePage">
       <Helmet>
         <title>{title}</title>
       </Helmet>
 
-      <Hero {...hero} />
-      <About {...needs} />
-      <SotR {...sotr} />
-      <Safety {...safety} />
-      <Contact {...cta}/>
+      <Hero
+        heading={data.home.heroHeading}
+        body={data.home._rawHeroBody}
+        image={data.home.heroImage}
+        cta={data.home.heroCta}
+      />
+      <About heading={data.home.servicesHeading} body={data.home._rawServicesBody} />
+      <SotR
+        heading={data.home.aboutHeading}
+        body={data.home._rawAboutBody}
+        image={data.home.aboutImage}
+      />
+      <Safety
+        heading={data.home.safetyHeading}
+        body={data.home._rawSafetyBody}
+        image={data.home.safetyImage}
+      />
+      <Contact heading={data.home.ctaHeading} cta={data.home.ctaPhone} />
     </Layout>
-  );
-};
+  )
+}
 
 export default IndexPage

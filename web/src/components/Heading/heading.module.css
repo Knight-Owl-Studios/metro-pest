@@ -1,11 +1,14 @@
-header.section {
+@import '../../components/typography.module.css';
+
+.container {
   padding-top: 20vw;
   padding-bottom: 2vw;
 
   position: relative;
 }
-header img {
-  position: absolute;
+
+.img {
+  position: absolute !important;
   top: 0;
   right: 0;
   bottom: 0;
@@ -18,11 +21,14 @@ header img {
   z-index: 1;
 }
 
-header h1 {
+.heading {
+  @extend .title1;
+
   z-index: 2;
   position: relative;
 
-  margin: 0;
+  margin: 0 auto;
+  max-width: 968px;
 
   color: white;
 }

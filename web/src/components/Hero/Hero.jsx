@@ -1,29 +1,32 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Img from 'gatsby-image';
-import classNames from 'classnames';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Img from 'gatsby-image'
+import classNames from 'classnames'
 
-import PhoneNumbers from "../../components/PhoneNumbers";
-import BlockContent from '../../components/block-content';
+import PhoneNumbers from '../../components/PhoneNumbers'
+import PhoneNumbersShape from '../../components/PhoneNumbers/PhoneNumber.shape'
+import BlockContent from '../../components/block-content'
+import BlockContentShape from '../../components/block-content/block-content.shape'
 
-import { title1 } from '../../components/typography.module.css';
-import "./Hero.styles.css";
+import { title1 } from '../../components/typography.module.css'
+import styles from './styles.module.css'
 
 const Hero = ({ heading, body, image, cta }) => (
-  <section className="hero dark-bg">
-    <Img className="hero_bg" fluid={image.asset.fluid} alt="" />
-    <div className="hero__content">
-      <h1 className={classNames("hero__heading", title1)}>{heading}</h1>
-      <BlockContent className="hero__body" blocks={body} />
+  <section className={styles.base}>
+    <Img className={styles.bg} fluid={image.asset.fluid} alt="" />
+    <div className={styles.content}>
+      <h1 className={classNames(title1, styles.heading)}>{heading}</h1>
+      <BlockContent className={styles.body} blocks={body} />
       <PhoneNumbers numbers={cta} />
     </div>
   </section>
-);
+)
 
 Hero.propTypes = {
   heading: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired
-};
+  body: BlockContentShape.isRequired,
+  image: PropTypes.string.isRequired,
+  cta: PropTypes.arrayOf(PhoneNumbersShape).isRequired
+}
 
-export default Hero;
+export default Hero

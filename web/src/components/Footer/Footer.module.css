@@ -1,63 +1,61 @@
+@import '../typography.module.css';
+@import '../../styles/media-queries.css';
+@import '../../styles/dark-theme.css';
+@import '../../containers/typography.css';
+
 .footer {
+  @extend %dark-section;
 }
 
-.footer .section {
+.container {
   padding: 7.5vw;
 
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-}
 
-@media (min-width: 1080px) {
-  :global(.footer .section) {
+  @media (--media-min-xl) {
     padding: 8vw;
   }
-}
 
-@media (min-width: 1440px) {
-  :global(.footer .section) {
+  @media (--media-min-xxl) {
     padding: 115px;
   }
 }
 
-.footer__links-container {
+.linksContainer {
   margin: 0 auto;
-}
 
-@media (min-width: 640px) {
-  .footer__links-container {
+  @media (--media-min-medium) {
     display: flex;
     flex-flow: row nowrap;
     align-items: flex-start;
     justify-content: space-around;
   }
-}
 
-@media (min-width: 1080px) {
-  .footer__links-container {
+  @media (--media-min-xl) {
     flex-direction: column;
     justify-content: flex-start;
     flex: 0 0 auto;
   }
 }
 
-.footer__logo-container {
+.logoContainer {
   margin-bottom: 30px;
 }
 
-.footer__copyright,
-.footer__social-links {
+.copyright,
+.socialLinks {
   opacity: 0.7;
   font-size: 14px;
   line-height: 1.28;
   margin: 10px 0;
 }
 
-.footer__copyright {
+.copyright {
 }
 
-.footer__social-links {
+.socialLinks {
   margin-top: 5px;
 }
 
@@ -67,38 +65,43 @@
   font-size: 16px;
 }
 
-.footer__social-img {
+.socialImg {
   height: 22px;
   width: auto;
   margin: 0 9px;
 }
 
-.footer__links {
+.links {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
   max-width: 230px;
-}
 
-@media (min-width: 640px) {
-  .footer__links {
+  @media (--media-min-medium) {
     margin-left: 2em;
   }
-}
 
-@media (min-width: 1080px) {
-  .footer__links {
+  @media (--media-min-large) {
+    flex-flow: column nowrap;
+    align-items: flex-start;
+  }
+
+  @media (--media-min-xl) {
     margin-left: 0;
   }
 }
 
-.footer__link-container {
+.linkContainer {
   flex: 1 1 50%;
   margin: 8.5px 0;
+
+  @media (--media-min-large) {
+    flex: 1 1 100%;
+  }
 }
 
-a:link.footer__link {
+.link {
   text-transform: uppercase;
   text-decoration: none;
 
@@ -110,51 +113,82 @@ a:link.footer__link {
   line-height: 21px;
 
   transition: color 0.25s ease-out;
+
+  &:visited {
+    color: #fff;
+  }
+
+  &:hover {
+    color: #58b146;
+  }
+
+  @media (--media-min-large) {
+    font-family: Lato, sans-serif;
+    text-transform: none;
+    color: #979797;
+  }
 }
 
-a:link.footer__link:visited {
-  color: #fff;
+.geoContainer {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-top: 20px;
+  margin-left: 100px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -49px;
+    width: 1px;
+    top: 10px;
+    bottom: 10px;
+    background: #979797;
+  }
+
+  @media (--media-max-large) {
+    display: none;
+  }
 }
 
-a:link.footer__link:hover {
-  color: #58b146;
+.geoHeading {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 24px;
 }
 
-.footer__geo {
+.geoList {
   flex: 1 1 auto;
   display: flex;
   flex-flow: column wrap;
-  align-items: center;
   justify-content: space-between;
   max-height: 225px;
-  margin-left: 50px;
-}
-
-@media (max-width: 1079px) {
-  .footer__geo {
-    display: none;
-  }
 }
 
 .geo {
   flex: 1 1 auto;
   margin-bottom: 10px;
-
-  &.geo--double-wide {
-    flex: 2 2 auto;
-  }
 }
 
-.geo__title {
+.doubleWide {
+  flex: 2 2 auto;
+}
+
+.geoTitle {
   color: #ffffff;
   font-family: Lato;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.4px;
   line-height: 19px;
+
+  @media (--media-min-xl) {
+    font-size: 16px;
+  }
 }
 
-.geo__locations {
+.geoLocations {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
@@ -162,7 +196,7 @@ a:link.footer__link:hover {
   margin-left: -8px;
 }
 
-.geo__location {
+.geoLocation {
   color: #ffffff;
   font-family: Lato;
   font-size: 12px;
@@ -174,11 +208,8 @@ a:link.footer__link:hover {
   flex: 1 1 auto;
   margin-left: 8px;
   min-width: 46%;
-}
 
-@media (min-width: 1200px) {
-  .geo__title,
-  .geo__location {
+  @media (--media-min-xl) {
     font-size: 16px;
   }
 }

@@ -17,7 +17,15 @@ img {
 }
 
 .dark-bg {
-  h1, h2, h3, h4, h5, p, li, a, a:link {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p,
+  li,
+  a,
+  a:link {
     color: #fff;
   }
 }
@@ -38,27 +46,30 @@ img {
   background-color: #1d1f24;
 }
 
-p, li, a {
+p,
+li,
+a {
   font-family: Lato, sans-serif;
 }
 
+.base-content {
+  a {
+    &:link {
+      cursor: pointer;
+      color: #58b146;
 
-a,
-a:link {
-  cursor: pointer;
-  color: #58b146;
+      transition: all 0.15s ease-in-out;
+    }
 
-  transition: all 0.15s ease-in-out;
+    &:hover {
+      opacity: 0.6;
+    }
+
+    &[href^='tel'] {
+      color: #444;
+    }
+  }
 }
-
-a:hover {
-  opacity: 0.6;
-}
-
-.dark-bg a[href^="tel"] {
+.dark-bg .base-content a[href^='tel'] {
   color: #fff;
-}
-
-a[href^="tel"] {
-  color: #444;
 }
