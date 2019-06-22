@@ -8,5 +8,10 @@
       "config": { "distDir": "public" }
     }
   ],
-  "alias": ["metro-pest-website.now.sh"]
+  "alias": ["metro-pest-website.now.sh"],
+  "routes": [
+    {
+      "src": "/(.*)", "dest": "/web/$1"
+    }
+  ]
 }
