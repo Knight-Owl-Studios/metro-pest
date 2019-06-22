@@ -4,7 +4,7 @@ import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 import logo from '../../../static/img/logo-light.svg'
 
-import styles from './footer.module.css'
+import styles from './Footer.module.css'
 
 const Footer = ({ social, links, geo }) => (
   <footer className={styles.footer}>
