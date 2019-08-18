@@ -12,6 +12,10 @@
       "use": "@now/node"
     }
   ],
+  "env": {
+    "stripe_key": "@stripe_key",
+    "stripe_secret": "@stripe_secret"
+  },
   "alias": ["metro-pest-website.now.sh"],
   "routes": [
     {
