@@ -6,12 +6,21 @@
       "src": "web/package.json",
       "use": "@now/static-build",
       "config": { "distDir": "public" }
+    },
+    {
+      "src": "api/payments.js",
+      "use": "@now/node"
     }
   ],
   "alias": ["metro-pest-website.now.sh"],
   "routes": [
     {
-      "src": "/(.*)", "dest": "/web/$1"
+      "src": "/api/payments/?",
+      "dest": "/api/payments.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/web/$1"
     }
   ]
 }
