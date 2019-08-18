@@ -1,4 +1,4 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET);
+const stripe = require("stripe")(process.env.stripe_secret);
 
 class PaymentError {
   constructor(error) {
@@ -29,7 +29,7 @@ module.exports = async function PaymentAPI(req, res) {
     status: "success",
     payload: {
       paymentIntent,
-      key: process.env.STRIPE_KEY
+      key: process.env.stripe_key
     }
   });
 };
