@@ -11,7 +11,7 @@ class PaymentError {
 }
 
 module.exports = async function PaymentAPI(req, res) {
-  const { amount } = req.body;
+  const { amount, metadata, email } = req.body;
 
   if (!amount) {
     return res.json({
@@ -20,9 +20,30 @@ module.exports = async function PaymentAPI(req, res) {
     });
   }
 
+  if (
+    !metadata.invoiceNumber ||
+    !(
+      metadata.firstName &&
+      metadata.lastName &&
+      metadata.streetAddress &&
+      metadata.zipCode
+    )
+  ) {
+    return res.json({
+      status: "error",
+      errors: [
+        new PaymentError(
+          "You must specify an invoice number or service address"
+        )
+      ]
+    });
+  }
+
   const paymentIntent = await stripe.paymentIntents.create({
     amount,
-    currency: "usd"
+    receipt_email: email,
+    currency: "usd",
+    metadata
   });
 
   return res.json({
