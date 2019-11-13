@@ -10,3 +10,20 @@
     padding-left: 0;
   }
 }
+
+.dollar {
+  position: relative;
+
+  &:before {
+    display: block;
+    content: '$';
+    font-size: 18px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    height: 16px;
+    padding-top: 25px;
+    margin: auto;
+  }
+}

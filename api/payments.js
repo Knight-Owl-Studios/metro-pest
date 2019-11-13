@@ -21,7 +21,7 @@ module.exports = async function PaymentAPI(req, res) {
   }
 
   if (
-    !metadata.invoiceNumber ||
+    !metadata.invoiceNumber &&
     !(
       metadata.firstName &&
       metadata.lastName &&

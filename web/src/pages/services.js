@@ -5,20 +5,16 @@ import cn from 'classnames'
 import BlockContent from '../components/block-content'
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
-import PeopleGrid from '../components/people-grid'
 import SEO from '../components/seo'
 import Heading from '../components/Heading'
 import Layout from '../containers/layout'
 
-import AddressBlock from '../components/address-block'
 import Form from '../components/Form'
-import PhoneNumbers from '../components/PhoneNumbers';
 
 import styles from './internal.module.css'
-import contactStyles from './contact.module.css'
 
 export const query = graphql`
-  query ContactPageQuery {
+  query ServicesPageQuery {
     companyInfo: sanityCompanyInfo {
       name
       address
@@ -36,7 +32,7 @@ export const query = graphql`
         }
       }
     }
-    page: sanityPage(_id: { regex: "/(drafts.|)contact/" }) {
+    page: sanityPage(_id: { regex: "/(drafts.|)services/" }) {
       id
       _id
       title
@@ -55,7 +51,7 @@ export const query = graphql`
   }
 `
 
-const ContactPage = props => {
+const ServicesPage = props => {
   const { data, errors } = props
 
   if (errors) {
@@ -68,44 +64,18 @@ const ContactPage = props => {
 
   const page = data && data.page
   const companyInfo = data && data.companyInfo
-  const formattedPhoneNumbers = data.phone.edges.map(({ node }) => ({
-    heading: node.area,
-    number: {
-      number: node.number
-    }
-  }))
 
   return (
     <Layout>
       <SEO title={page.title} />
       <Container>
         <Heading title={page.title} image={page.headingImage.asset.fluid} />
-        <div className={cn(styles.pageContent, contactStyles.container)}>
-          <div className={contactStyles.column}>
-            <BlockContent blocks={page._rawBody || []} />
-
-            <PhoneNumbers
-              numbers={formattedPhoneNumbers}
-              vertical
-            />
-
-            <AddressBlock
-              email={companyInfo.email}
-              name={companyInfo.name}
-              address={companyInfo.address}
-              city={companyInfo.city}
-              state={companyInfo.state}
-              zipCode={companyInfo.zipCode}
-            />
-          </div>
-          <div className={contactStyles.divider} />
-          <div className={contactStyles.column}>
-            <Form />
-          </div>
+        <div className={cn(styles.pageContent)}>
+          <BlockContent blocks={page._rawBody || []} />
         </div>
       </Container>
     </Layout>
   )
 }
 
-export default ContactPage
+export default ServicesPage

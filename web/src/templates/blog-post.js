@@ -10,11 +10,6 @@ export const query = graphql`
   query BlogPostTemplateQuery($id: String!) {
     post: sanityPost(id: { eq: $id }) {
       id
-      publishedAt
-      categories {
-        _id
-        title
-      }
       mainImage {
         asset {
           _id
@@ -25,13 +20,7 @@ export const query = graphql`
       slug {
         current
       }
-      authors {
-        _key
-        person {
-          name
-        }
-        roles
-      }
+      _rawBody
     }
   }
 `

@@ -10,19 +10,31 @@ class CheckoutForm extends Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      email: ''
+    }
+
     this.setEmail = this.setEmail.bind(this)
+    this.submit = this.submit.bind(this)
   }
 
   async submit(ev) {
     ev.preventDefault()
+    const { stripe, paymentIntent, onLoading, onError, onSuccess } = this.props
 
-    const { stripe, paymentIntent } = this.props
+    onError('all', null)
+    onLoading(true)
 
-    this.setState({ loading: true })
+    try {
+      await stripe.handleCardPayment(paymentIntent.client_secret, {
+        receipt_email: this.state.email
+      })
+      onSuccess(this.state.email)
+    } catch (err) {
+      onError('all', err.message)
+    }
 
-    await stripe.handleCardPayment(paymentIntent.clientSecret, { receipt_email: this.state.email })
-
-    this.setState({ loading: false })
+    onLoading(false)
   }
 
   setEmail(e) {
@@ -41,7 +53,13 @@ class CheckoutForm extends Component {
           description="For receipt purposes only. We will not add you to any list"
           onChange={this.setEmail}
         />
-        <Button appearance="primary" intent="success" onClick={this.submit} height={40}>
+        <Button
+          appearance="primary"
+          intent="success"
+          onClick={this.submit}
+          height={60}
+          isLoading={this.props.loading}
+        >
           {`Pay $${this.props.amount}`}
         </Button>
       </div>

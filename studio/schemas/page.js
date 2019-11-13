@@ -2,7 +2,6 @@ export default {
   name: "page",
   title: "Page",
   type: "document",
-  liveEdit: false,
   fields: [
     {
       name: "title",

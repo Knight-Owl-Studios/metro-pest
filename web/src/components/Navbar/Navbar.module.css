@@ -137,12 +137,12 @@
 
   font-family: Montserrat, sans-serif;
   font-weight: 500;
-  color: #858994;
+  color: #393a3c;
 
   white-space: nowrap;
 
   &:visited {
-    color: #858994;
+    color: #393a3c;
   }
 
   @media (--media-min-large) {

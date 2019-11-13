@@ -25,6 +25,7 @@ import phoneNumber from "./objects/phoneNumber";
 import phoneWithHeading from "./objects/phone-with-heading";
 import serviceLocations from "./objects/serviceLocations";
 import socialProfile from "./objects/social-profile";
+import specialOffer from "./objects/special-offer";
 import homepage from "./homepage";
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -56,7 +57,8 @@ export default createSchema({
     phoneNumber,
     phoneWithHeading,
     serviceLocations,
-    socialProfile
+    socialProfile,
+    specialOffer
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
   ])

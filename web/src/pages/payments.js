@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 import { graphql } from 'gatsby'
-import { TransitionGroup } from 'react-transition-group'
 import axios from 'axios'
-import { TextInputField, Button } from 'evergreen-ui'
+import { TextInputField, Button, Tab, Tablist, Pane, Spinner, Alert } from 'evergreen-ui'
 
-import BlockContent from '../components/block-content'
+
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Heading from '../components/Heading'
+
 import PaymentForm from '../components/PaymentForm'
-import { title2, paragraph, small } from '../components/typography.module.css'
-import Fade from '../components/Fade.transition'
-import { input, submit } from '../components/PaymentForm/payment.module.css'
+import InvoiceField from '../components/PaymentForm/invoice-field'
+import ServiceAddress from '../components/PaymentForm/service-address'
+
+import { title2, paragraph } from '../components/typography.module.css'
 
 import Layout from '../containers/layout'
 
@@ -43,13 +44,12 @@ export const query = graphql`
   }
 `
 
-const marginTop = { marginTop: '25px' }
-
 class PaymentPage extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      activeTab: null,
       stripe: null,
       amount: undefined,
       paymentIntent: null,
@@ -64,10 +64,9 @@ class PaymentPage extends Component {
 
     this.getPaymentIntent = this.getPaymentIntent.bind(this)
     this.updateFormData = this.updateFormData.bind(this)
-  }
-
-  updateAmount() {
-    this.setState(() => ({ amount: this.amountInput.current.value }))
+    this.setLoading = this.setLoading.bind(this)
+    this.setError = this.setError.bind(this)
+    this.success = this.success.bind(this)
   }
 
   async getPaymentIntent() {
@@ -80,7 +79,7 @@ class PaymentPage extends Component {
       }))
 
       const { data } = await axios.post('/api/payments', {
-        amount,
+        amount: amount * 100,
         metadata: {
           invoiceNumber,
           firstName,
@@ -160,8 +159,30 @@ class PaymentPage extends Component {
     return false
   }
 
+  setLoading(loading = true) {
+    this.setState({ loading })
+  }
+
+  setError(key, err) {
+    this.setState({
+      errors: {
+        ...this.state.errors,
+        [key]: err
+      }
+    })
+  }
+
+  success(email) {
+    let successMessage = `Successfully paid $${this.state.amount}.`
+    if (email) {
+      successMessage += ` An email will be sent to ${email} with your receipt`
+    }
+    this.setState({ success: true, successMessage })
+  }
+
   updateFormData(e) {
     this.setState({ [e.target.name]: e.target.value })
+
     if (this.hasErrors()) {
       this.validate()
     }
@@ -196,101 +217,88 @@ class PaymentPage extends Component {
           <Container>
             <Heading title={page.title} image={page.headingImage.asset.fluid} />
             <div className={styles.pageContent}>
-              <TransitionGroup className="steps">
-                {!this.state.paymentIntent && (
-                  <Fade active>
-                    <h2 className={title2}>Enter details about your service.</h2>
-                    <p className={small} style={marginTop}>
-                      Enter the amount listed on your invoice.
-                    </p>
-                    <div style={marginTop}>
+              {this.state.errors.all && <Alert intent="danger" title={this.state.errors.all} />}
+              {this.state.loading && <Alert intent="none" title="Loading..." />}
+              {this.state.success && <Alert intent="success" title={this.state.successMessage} />}
+              {!this.state.paymentIntent && (
+                <Pane maxWidth={600} marginLeft="auto" marginRight="auto">
+                  <h2 className={title2}>Enter details about your service.</h2>
+                  <Pane is="p" className={paragraph} marginTop={25} fontWeight="bold">
+                    Enter the amount listed on your invoice.
+                  </Pane>
+                  <Pane marginTop={25}>
+                    <Pane className={styles.dollar} paddingLeft={15}>
                       <TextInputField
-                        type="number"
-                        label="Amount"
-                        name="amount"
-                        placeholder="50.00"
                         onInput={this.updateFormData}
+                        label="Invoice Amount"
+                        name="amount"
+                        type="number"
+                        step=".01"
+                        inputHeight={50}
+                        fontSize="18px"
                         isInvalid={!!(this.state.errors.amount || this.state.errors.all)}
                         validationMessage={this.state.errors.amount}
                       />
-
-                      <p className={small} style={marginTop}>
-                        Next, enter either invoice number, or service address:
-                      </p>
-                      <br />
-
-                      {this.state.errors.all && (
-                        <p className={small} style={{ color: 'red' }}>
-                          {this.state.errors.all}
-                        </p>
-                      )}
-
-                      <div className="split">
-                        <div className="column">
-                          <div className="row">
-                            <TextInputField
-                              label="Invoice Number"
-                              name="invoiceNumber"
-                              onInput={this.updateFormData}
-                              isInvalid={
-                                !!(this.state.errors.invoiceNumber || this.state.errors.all)
-                              }
-                              validationMessage={this.state.errors.invoiceNumber}
-                            />
-                          </div>
-                        </div>
-
-                        <div style={{ margin: '25px 0' }}>or</div>
-
-                        <div className="column">
-                          <p className={small}>Service Address</p>
-                          <TextInputField
-                            label="First Name"
-                            name="firstName"
-                            onInput={this.updateFormData}
-                            isInvalid={!!(this.state.errors.firstName || this.state.errors.all)}
-                            validationMessage={this.state.errors.firstName}
-                          />
-                          <TextInputField
-                            label="Last Name"
-                            name="lastName"
-                            onInput={this.updateFormData}
-                            isInvalid={!!(this.state.errors.lastName || this.state.errors.all)}
-                            validationMessage={this.state.errors.lastName}
-                          />
-                          <TextInputField
-                            label="Street Address"
-                            name="streetAddress"
-                            onInput={this.updateFormData}
-                            isInvalid={!!(this.state.errors.streetAddress || this.state.errors.all)}
-                            validationMessage={this.state.errors.streetAddress}
-                          />
-                          <TextInputField
-                            label="Zip Code"
-                            name="zipCode"
-                            onInput={this.updateFormData}
-                            isInvalid={!!(this.state.errors.zipCode || this.state.errors.all)}
-                            validationMessage={this.state.errors.zipCode}
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <Button onClick={this.getPaymentIntent}>Next - Payment Details</Button>
-                  </Fade>
-                )}
-
-                {this.state.paymentIntent && (
-                  <Fade active={this.state.paymentIntent}>
-                    <Elements>
-                      <PaymentForm
-                        amount={this.state.amount}
-                        paymentIntent={this.state.paymentIntent}
+                    </Pane>
+                    <Pane is="p" className={paragraph} marginTop={50} fontWeight="bold">
+                      Enter either invoice number, or service address:
+                    </Pane>
+                    <Tablist marginBottom={50} textAlign="center">
+                      <Tab
+                        height={75}
+                        width={200}
+                        marginTop={25}
+                        background="#f5f5f5"
+                        onSelect={() => this.setState({ activeTab: 'invoice' })}
+                        isSelected={this.state.activeTab === 'invoice'}
+                      >
+                        Inoice Number
+                      </Tab>
+                      <Tab
+                        height={75}
+                        width={200}
+                        marginTop={25}
+                        background="#f5f5f5"
+                        onSelect={() => this.setState({ activeTab: 'serviceAddress' })}
+                        isSelected={this.state.activeTab === 'serviceAddress'}
+                      >
+                        Service Address
+                      </Tab>
+                    </Tablist>
+                    {this.state.activeTab === 'invoice' && (
+                      <InvoiceField
+                        onInput={this.updateFormData}
+                        isInvalid={!!(this.state.errors.invoiceNumber || this.state.errors.all)}
+                        validationMessage={this.state.errors.invoiceNumber}
                       />
-                    </Elements>
-                  </Fade>
-                )}
-              </TransitionGroup>
+                    )}
+                    {this.state.activeTab === 'serviceAddress' && (
+                      <ServiceAddress onInput={this.updateFormData} errors={this.state.errors} />
+                    )}
+                  </Pane>
+
+                  <Button
+                    appearance="primary"
+                    onClick={this.getPaymentIntent}
+                    isLoading={this.state.loading}
+                  >
+                    Next - Payment Details
+                  </Button>
+                </Pane>
+              )}
+
+              {!!this.state.paymentIntent && (
+                <Elements>
+                  <PaymentForm
+                    loading={this.state.loading}
+                    onLoading={this.setLoading}
+                    onError={this.setError}
+                    amount={this.state.amount}
+                    paymentIntent={this.state.paymentIntent}
+                    onSuccess={this.success}
+                  />
+                </Elements>
+              )}
             </div>
           </Container>
         </Layout>

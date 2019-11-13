@@ -1,6 +1,7 @@
 @import '../typography.module.css';
 
 .container {
+  margin: 1.5em 0;
 }
 
 .row {

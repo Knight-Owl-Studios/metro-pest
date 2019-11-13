@@ -7,7 +7,8 @@ import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
 
-import { responsiveTitle1 } from '../components/typography.module.css'
+import { title1 } from '../components/typography.module.css'
+import styles from "./internal.module.css";
 
 export const query = graphql`
   query BlogPageQuery {
@@ -19,6 +20,7 @@ export const query = graphql`
         node {
           id
           publishedAt
+          _rawExcerpt
           mainImage {
             asset {
               _id
@@ -52,8 +54,10 @@ const BlogPage = props => {
     <Layout>
       <SEO title='Blog' />
       <Container>
-        <h1 className={responsiveTitle1}>Blog</h1>
-        {postNodes && postNodes.length > 0 && <BlogPostPreviewGrid nodes={postNodes} />}
+        <div className={styles.pageContent}>
+          <h1 className={title1}>Blog</h1>
+          <BlogPostPreviewGrid nodes={postNodes} />
+        </div>
       </Container>
     </Layout>
   )

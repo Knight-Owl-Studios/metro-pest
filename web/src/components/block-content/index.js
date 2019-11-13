@@ -9,6 +9,17 @@ import Slideshow from './slideshow'
 import typography from '../typography.module.css'
 
 const serializers = {
+  marks: {
+    link(props) {
+      return <a className={typography.a} href={props.mark.href} key={props.mark._key}>{props.children}</a>
+    }
+  },
+  list ({ children }) {
+    return <ul className={typography.list}>{children}</ul>
+  },
+  listItem({ listItem, children }) {
+    return <li className={typography.li}>{children}</li>;
+  },
   types: {
     block (props) {
       switch (props.node.style) {
