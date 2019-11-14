@@ -23,7 +23,8 @@ export default class AddressBlock extends React.PureComponent {
     return (
       email && (
         <Fragment>
-          <div className={styles.row}>{email}</div>
+          <p className={styles.label}>Email us at:</p>
+          <p className={styles.row}><a className={styles.email} href={`mailto:${email}`}>{email}</a></p>
         </Fragment>
       )
     )
@@ -34,6 +35,7 @@ export default class AddressBlock extends React.PureComponent {
 
     return (
       <Fragment>
+        <div className={styles.label}>Address:</div>
         <div className={styles.row}>{name}</div>
         <div className={styles.row}>{address}</div>
         <div className={styles.row}>{`${city}, ${state} ${zipCode}`}</div>
@@ -45,8 +47,8 @@ export default class AddressBlock extends React.PureComponent {
     return (
       <div className={styles.container}>
         <address>
-          {this.renderEmailBlock()}
-          {this.renderAddress()}
+          <div className={styles.addressBlock}>{this.renderEmailBlock()}</div>
+          <div className={styles.addressBlock}>{this.renderAddress()}</div>
         </address>
       </div>
     )

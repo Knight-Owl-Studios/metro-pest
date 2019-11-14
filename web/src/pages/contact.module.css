@@ -15,7 +15,12 @@
   flex: 0 0 10vw;
   width: 10vw;
 
+
   position: relative;
+
+  @media (--media-max-large) {
+    display: none;
+  }
 
   @media (--media-min-xl) {
     width: 100px;

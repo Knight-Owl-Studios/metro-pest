@@ -281,6 +281,7 @@ class PaymentPage extends Component {
                     appearance="primary"
                     onClick={this.getPaymentIntent}
                     isLoading={this.state.loading}
+                    height={48}
                   >
                     Next - Payment Details
                   </Button>

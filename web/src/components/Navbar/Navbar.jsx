@@ -49,9 +49,9 @@ export default class Navbar extends Component {
               <i className="fa fa-times" />
             </a>
           </li>
-          {links.map(({ path, title }) => (
+          {links.map(({ path, title, mobile }) => (
             <li key={title} className={styles.linkContainer}>
-              <Link to={path} className={styles.link}>
+              <Link to={path} className={classNames(styles.link, { [styles.mobileOnly]: mobile })}>
                 {title}
               </Link>
             </li>
@@ -80,7 +80,8 @@ Navbar.propTypes = {
   links: PropTypes.arrayOf(
     PropTypes.shape({
       path: PropTypes.string,
-      title: PropTypes.string
+      title: PropTypes.string,
+      mobile: PropTypes.bool
     })
   )
 }

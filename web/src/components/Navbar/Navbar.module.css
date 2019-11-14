@@ -161,6 +161,12 @@
   }
 }
 
+.mobileOnly {
+  @media (--media-min-large) {
+    display: none;
+  }
+}
+
 .phoneContainer {
   flex: 0 0 auto;
 }

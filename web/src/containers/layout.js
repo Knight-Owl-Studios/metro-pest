@@ -49,7 +49,8 @@ const query = graphql`
 `
 
 const links = [
-  { path: '/contact', title: "Contact" },
+  { path: '/', title: "Home", mobile: true },
+  { path: '/contact-us', title: "Contact" },
   { path: '/about', title: "About" },
   { path: '/special-offers', title: "Special Offers" },
   { path: '/services', title: "Services" },
