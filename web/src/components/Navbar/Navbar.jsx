@@ -24,6 +24,10 @@ export default class Navbar extends Component {
     )
   }
 
+  componentWillUnmount() {
+    document.body.style.overflow = 'visible';
+  }
+
   render() {
     const { links, phone } = this.props
 
