@@ -1,4 +1,5 @@
 @import '../../components/typography.module.css';
+@import '../../styles/media-queries.css'
 
 .container {
   padding-top: 20vh;
@@ -31,4 +32,10 @@
   max-width: 968px;
 
   color: white;
+
+  padding-left: .25em;
+
+  @media (--media-min-large) {
+    padding-left: 0;
+  }
 }

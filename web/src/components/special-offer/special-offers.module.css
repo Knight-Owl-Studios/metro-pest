@@ -1,6 +1,7 @@
 @import '../../components/typography.module.css';
 
 .list {
+    padding-left: 0;
     margin-top: 50px;
     display: flex;
     flex-flow: row wrap;

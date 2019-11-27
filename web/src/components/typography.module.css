@@ -8,7 +8,7 @@
 
 %headings {
   font-family: Montserrat, sans-serif;
-  margin: 1.25em 0 .85em;
+  margin: 1.75em 0 .85em;
 
   .light {
     color: white;
@@ -62,20 +62,21 @@
 .title3 {
   @extend %headings;
   color: #222222;
-  font-size: 28px;
+  font-size: 20px;
   font-weight: bold;
   letter-spacing: -0.23px;
   line-height: 1.21;
+  text-transform: uppercase;
 
   @media (--media-min-large) {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: bold;
     letter-spacing: -0.26px;
     line-height: 1.22;
   }
 
   @media (--media-min-xl) {
-    font-size: 36px;
+    font-size: 28px;
     font-weight: bold;
     letter-spacing: -0.3px;
     line-height: 1.22;
@@ -84,21 +85,21 @@
 
 .title4 {
   @extend %headings;
-  color: #444444;
-  font-size: 24px;
+  color: #545454;
+  font-size: 18px;
   font-weight: bold;
   letter-spacing: -0.21px;
   line-height: 1.2;
 
   @media (--media-min-large) {
     h4 {
-      font-size: 27px;
+      font-size: 22px;
       letter-spacing: -0.22px;
     }
   }
 
   @media (--media-min-xl) {
-    font-size: 30px;
+    font-size: 26px;
     letter-spacing: -0.26px;
   }
 }
