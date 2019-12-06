@@ -4,7 +4,7 @@ import Img from 'gatsby-image'
 import styles from './heading.module.css'
 
 const Heading = ({ title, image }) => (
-  <header className={styles.container}>
+  <header className={styles.container + ' test'}>
     <Img className={styles.img} fluid={image} alt="" />
     <h1 className={styles.heading}>{title}</h1>
   </header>

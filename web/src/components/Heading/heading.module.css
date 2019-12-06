@@ -1,5 +1,5 @@
 @import '../../components/typography.module.css';
-@import '../../styles/media-queries.css'
+@import '../../styles/media-queries.css';
 
 .container {
   padding-top: 20vh;

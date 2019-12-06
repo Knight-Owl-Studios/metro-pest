@@ -24,13 +24,22 @@ function SEO({ description, lang, meta, keywords = [], title, ogTitle, ogDescrip
           return
         }
         const metaDescription = description || data.site.description
+        const metatTitle = title || data.site.title;
+        const metaKeywords = keywords || data.site.keywords;
+
+        if (!ogTitle) {
+          ogTitle = metatTitle;
+        }
+        if (!ogDescription) {
+          ogDescription = metaDescription;
+        }
+
         return (
           <Helmet
             htmlAttributes={{
               lang
             }}
-            title={title}
-            titleTemplate={title === data.site.title ? '%s' : `%s | ${data.site.title}`}
+            title={metatTitle}
             meta={[
               {
                 name: 'description',
@@ -74,10 +83,10 @@ function SEO({ description, lang, meta, keywords = [], title, ogTitle, ogDescrip
               }
             ]
               .concat(
-                keywords && keywords.length > 0
+                metaKeywords && metaKeywords.length > 0
                   ? {
                       name: 'keywords',
-                      content: keywords.join(', ')
+                      content: metaKeywords.join(', ')
                     }
                   : []
               )

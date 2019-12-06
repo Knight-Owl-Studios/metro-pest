@@ -1,15 +1,14 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+
+import Fragments from '../components/Fragments';
 import BlockContent from '../components/block-content'
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
-import PeopleGrid from '../components/people-grid'
 import SEO from '../components/seo'
 import Heading from '../components/Heading'
 import Layout from '../containers/layout'
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from '../lib/helpers'
-
-import { title1 } from '../components/typography.module.css'
 
 import styles from './internal.module.css'
 
@@ -28,7 +27,10 @@ export const query = graphql`
         }
       }
       seo {
-        title
+        ...SEOFragment
+      }
+      social {
+        ...SocialFragment
       }
     }
   }
