@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
 const detailsQuery = graphql`
   query SEOQuery {
-    site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
+    site: sanitySiteSettings {
       seo {
         title
         description
@@ -50,7 +50,7 @@ function SEO({ description, lang, meta, keywords = [], title, ogTitle, ogDescrip
               },
               {
                 property: 'og:image',
-                content: '/static/img/og-image.jpg'
+                content: '/img/og-image.jpg'
               },
               {
                 name: 'twitter:card',
@@ -70,7 +70,7 @@ function SEO({ description, lang, meta, keywords = [], title, ogTitle, ogDescrip
               },
               {
                 name: 'twitter:image',
-                content: '/static/img/twitter-card.jpg'
+                content: '/img/twitter-card.jpg'
               }
             ]
               .concat(

@@ -1,13 +1,9 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
-import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from '../lib/helpers'
-import BlogPostPreviewGrid from '../components/blog-post-preview-grid'
-import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
-
+z
 import Hero from '../components/Hero'
 import About from '../components/About'
 import SotR from '../components/SotR'
@@ -88,12 +84,9 @@ export const IndexPage = ({ data, errors }) => {
     )
   }
 
-  const { title } = data.site.seo
   return (
     <Layout id="homePage">
-      <Helmet>
-        <title>{title}</title>
-      </Helmet>
+      <SEO />
 
       <Hero
         heading={data.home.heroHeading}
