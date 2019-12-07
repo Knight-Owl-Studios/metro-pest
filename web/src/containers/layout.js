@@ -1,8 +1,8 @@
 import { graphql, StaticQuery } from 'gatsby'
 import Helmet from 'react-helmet';
-import React, { useState } from 'react'
+import React from 'react'
 
-import Layout from '../components/layout'
+import Contact from '../components/Contact'
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -13,6 +13,15 @@ import "./global.css";
 
 const query = graphql`
   query SiteTitleQuery {
+    numbers:allSanityPhonenumber {
+      edges {
+        node {
+          number
+          area
+        }
+      }
+    }
+
     site: sanitySiteSettings {
       phone {
         number
@@ -70,6 +79,7 @@ function LayoutContainer(props) {
         }
 
         const social = data.social.edges.map(({ node }) => node);
+        const cta = data.numbers.edges.map(({ node }) => ({ heading: node.area, number: node }));
 
         return (
           <div className={styles.global}>
@@ -92,6 +102,9 @@ function LayoutContainer(props) {
             />
 
             { props.children }
+
+            {!props.hideContact && <Contact heading="Get in touch today" cta={cta} />}
+
             <Footer
               social={social}
               links={links}

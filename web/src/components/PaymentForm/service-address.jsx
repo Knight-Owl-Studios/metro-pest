@@ -4,7 +4,7 @@ import { small } from '../typography.module.css'
 
 const ServiceAddress = ({ errors, onInput }) => (
   <div>
-    <p className={small}>Service Address</p>
+    <p className={small} style={{ marginBottom: '12px' }}>Service Address</p>
     <TextInputField
       label="First Name"
       name="firstName"

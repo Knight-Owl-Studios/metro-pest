@@ -85,7 +85,7 @@ export const IndexPage = ({ data, errors }) => {
   }
 
   return (
-    <Layout id="homePage">
+    <Layout id="homePage" hideContact>
       <SEO />
 
       <Hero

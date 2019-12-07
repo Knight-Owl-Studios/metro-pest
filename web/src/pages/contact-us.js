@@ -75,7 +75,7 @@ const ContactPage = props => {
   }))
 
   return (
-    <Layout>
+    <Layout hideContact>
       <SEO title={page.title} />
       <Container>
         <Heading title={page.title} image={page.headingImage.asset.fluid} />

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { graphql } from 'gatsby'
 import axios from 'axios'
-import { TextInputField, Button, Tab, Tablist, Pane, Spinner, Alert } from 'evergreen-ui'
+import { TextInputField, Button, Tab, Tablist, Pane, Spinner, Alert, Small } from 'evergreen-ui'
 
 
 import Container from '../components/container'
@@ -13,7 +13,7 @@ import PaymentForm from '../components/PaymentForm'
 import InvoiceField from '../components/PaymentForm/invoice-field'
 import ServiceAddress from '../components/PaymentForm/service-address'
 
-import { title2, paragraph } from '../components/typography.module.css'
+import { title2, paragraph, small } from '../components/typography.module.css'
 
 import Layout from '../containers/layout'
 
@@ -217,11 +217,11 @@ class PaymentPage extends Component {
           <Container>
             <Heading title={page.title} image={page.headingImage.asset.fluid} />
             <div className={styles.pageContent}>
-              {this.state.errors.all && <Alert intent="danger" title={this.state.errors.all} />}
-              {this.state.loading && <Alert intent="none" title="Loading..." />}
-              {this.state.success && <Alert intent="success" title={this.state.successMessage} />}
               {!this.state.paymentIntent && (
                 <Pane maxWidth={600} marginLeft="auto" marginRight="auto">
+                  {this.state.errors.all && <Alert intent="danger" title={this.state.errors.all} />}
+                  {this.state.loading && <Alert intent="none" title="Loading..." />}
+                  {this.state.success && <Alert intent="success" title={this.state.successMessage} />}
                   <h2 className={title2}>Enter details about your service.</h2>
                   <Pane is="p" className={paragraph} marginTop={25} fontWeight="bold">
                     Enter the amount listed on your invoice.
@@ -242,13 +242,15 @@ class PaymentPage extends Component {
                     </Pane>
                     <Pane is="p" className={paragraph} marginTop={50} fontWeight="bold">
                       Enter either invoice number, or service address:
+                      <Pane is="p" className={small}>Click an option below</Pane>
                     </Pane>
                     <Tablist marginBottom={50} textAlign="center">
                       <Tab
                         height={75}
-                        width={200}
+                        width="45%"
                         marginTop={25}
-                        background="#f5f5f5"
+                        background={this.state.activeTab === 'invoice' ? "#f5f5f5" : "transparent"}
+                        style={{ border: this.state.activeTab === 'invoice' ? '' : `2px solid #dad9d9` }}
                         onSelect={() => this.setState({ activeTab: 'invoice' })}
                         isSelected={this.state.activeTab === 'invoice'}
                       >
@@ -256,9 +258,10 @@ class PaymentPage extends Component {
                       </Tab>
                       <Tab
                         height={75}
-                        width={200}
+                        width="45%"
                         marginTop={25}
-                        background="#f5f5f5"
+                        background={this.state.activeTab === 'serviceAddress' ? "#f5f5f5" : "transparent"}
+                        style={{ border: this.state.activeTab === 'serviceAddress' ? '' : `2px solid #dad9d9` }}
                         onSelect={() => this.setState({ activeTab: 'serviceAddress' })}
                         isSelected={this.state.activeTab === 'serviceAddress'}
                       >
@@ -277,14 +280,16 @@ class PaymentPage extends Component {
                     )}
                   </Pane>
 
-                  <Button
-                    appearance="primary"
-                    onClick={this.getPaymentIntent}
-                    isLoading={this.state.loading}
-                    height={48}
-                  >
-                    Next - Payment Details
-                  </Button>
+                  <Pane textAlign="right">
+                    <Button
+                      appearance="primary"
+                      onClick={this.getPaymentIntent}
+                      isLoading={this.state.loading}
+                      height={48}
+                    >
+                      Next - Payment Details
+                    </Button>
+                  </Pane>
                 </Pane>
               )}
 
