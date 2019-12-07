@@ -11,7 +11,6 @@ export default function HTML(props) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <script src="https://js.stripe.com/v3/"></script>
         {props.headComponents}
       </head>
       <body {...props.bodyAttributes}>
@@ -24,6 +23,7 @@ export default function HTML(props) {
           id="___gatsby"
           dangerouslySetInnerHTML={{ __html: props.body }}
         />
+        <script src="https://js.stripe.com/v3/" async></script>
         {props.postBodyComponents}
       </body>
     </html>

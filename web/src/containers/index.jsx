@@ -14,14 +14,22 @@ const TemplateWrapper = ({ data, children }) => (
   <div>
     <Helmet>
       <link
-        href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Montserrat:600,700"
+        href="https://fonts.googleapis.com/css?family=Lato:400|Montserrat:700"
         rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/css?family=Lato:700|Montserrat:600"
+        rel="stylesheet"
+        media="print"
+        onload="this.media='all'"
       />
       <link
         rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
         integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
         crossorigin="anonymous"
+        media="print"
+        onload="this.media='all'"
       />
     </Helmet>
 
