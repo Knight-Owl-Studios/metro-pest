@@ -23,9 +23,9 @@ function SEO({ description, lang, meta, keywords = [], title, ogTitle, ogDescrip
         if (!data.site) {
           return
         }
-        const metaDescription = description || data.site.description
-        const metatTitle = title || data.site.title;
-        const metaKeywords = keywords || data.site.keywords;
+        const metaDescription = description || data.site.seo.description
+        const metatTitle = title || data.site.seo.title;
+        const metaKeywords = keywords || data.site.seo.keywords;
 
         if (!ogTitle) {
           ogTitle = metatTitle;

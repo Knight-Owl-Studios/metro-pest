@@ -11,6 +11,7 @@ export default function HTML(props) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.append%2CArray.prototype.find"></script>
         {props.headComponents}
       </head>
       <body {...props.bodyAttributes}>
