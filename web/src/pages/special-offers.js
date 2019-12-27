@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import cn from 'classnames'
+import { snakeToCamelObject } from '../lib/helpers'
 
 import BlockContent from '../components/block-content'
 import Container from '../components/container'
@@ -56,7 +57,10 @@ export const query = graphql`
         }
       }
       seo {
-        title
+        ...SEOFragment
+      }
+      social {
+        ...SocialFragment
       }
     }
   }
@@ -78,7 +82,7 @@ const SpecialOffersPage = props => {
 
   return (
     <Layout>
-      <SEO title={page.title} />
+      <SEO {...page.seo} {...snakeToCamelObject(page.social)} />
       <Container>
         <Heading title={page.title} image={page.headingImage.asset.fluid} />
         <div className={cn(styles.pageContent)}>

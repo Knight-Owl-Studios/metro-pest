@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
+import { snakeToCamelObject } from '../lib/helpers'
 
 import Hero from '../components/Hero'
 import About from '../components/About'
@@ -68,8 +69,10 @@ export const query = graphql`
       }
 
       seo {
-        _type
-        title
+        ...SEOFragment
+      }
+      social {
+        ...SocialFragment
       }
     }
   }
@@ -86,7 +89,7 @@ export const IndexPage = ({ data, errors }) => {
 
   return (
     <Layout id="homePage" hideContact>
-      <SEO />
+      <SEO {...data.home.seo} {...snakeToCamelObject(data.home.social)} />
 
       <Hero
         heading={data.home.heroHeading}

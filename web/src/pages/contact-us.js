@@ -2,6 +2,8 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import cn from 'classnames'
 
+import { snakeToCamelObject } from '../lib/helpers'
+
 import BlockContent from '../components/block-content'
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
@@ -48,7 +50,10 @@ export const query = graphql`
         }
       }
       seo {
-        title
+        ...SEOFragment
+      }
+      social {
+        ...SocialFragment
       }
     }
   }
@@ -76,7 +81,7 @@ const ContactPage = props => {
 
   return (
     <Layout hideContact>
-      <SEO title={page.title} />
+      <SEO {...page.seo} {...snakeToCamelObject(page.social)} />
       <Container>
         <Heading title={page.title} image={page.headingImage.asset.fluid} />
         <div className={cn(styles.pageContent, contactStyles.container)}>
