@@ -8,7 +8,7 @@ import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Heading from '../components/Heading'
 import Layout from '../containers/layout'
-import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from '../lib/helpers'
+import { mapEdgesToNodes, filterOutDocsWithoutSlugs, snakeToCamelObject } from '../lib/helpers'
 
 import styles from './internal.module.css'
 
@@ -60,7 +60,7 @@ const AboutPage = props => {
 
   return (
     <Layout>
-      <SEO title={page.title} />
+      <SEO {...page.seo} {...snakeToCamelObject(page.social)} />
       <Container>
         <Heading title={page.title} image={page.headingImage.asset.fluid} />
         <div className={styles.pageContent}>

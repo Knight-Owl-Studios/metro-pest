@@ -5,6 +5,7 @@ import GraphQLErrorList from '../components/graphql-error-list'
 import BlogPost from '../components/blog-post'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
+import { snakeToCamelObject } from '../lib/helpers'
 
 export const query = graphql`
   query BlogPostTemplateQuery($id: String!) {
@@ -21,6 +22,13 @@ export const query = graphql`
         current
       }
       _rawBody
+
+      seo {
+        ...SEOFragment
+      }
+      social {
+        ...SocialFragment
+      }
     }
   }
 `
@@ -31,7 +39,7 @@ const BlogPostTemplate = props => {
   return (
     <Layout>
       {errors && <SEO title='GraphQL Error' />}
-      {post && <SEO title={post.title || 'Untitled'} />}
+      <SEO {...post.seo} {...snakeToCamelObject(post.social)} />
 
       {errors && (
         <Container>

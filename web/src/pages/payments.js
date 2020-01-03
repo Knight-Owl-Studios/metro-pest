@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import axios from 'axios'
 import { TextInputField, Button, Tab, Tablist, Pane, Spinner, Alert, Small } from 'evergreen-ui'
 
+import { snakeToCamelObject } from '../lib/helpers'
 
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
@@ -38,7 +39,10 @@ export const query = graphql`
         }
       }
       seo {
-        title
+        ...SEOFragment
+      }
+      social {
+        ...SocialFragment
       }
     }
   }
@@ -213,7 +217,7 @@ class PaymentPage extends Component {
     return (
       <StripeProvider stripe={this.state.stripe}>
         <Layout>
-          <SEO title={page.title} />
+        <SEO {...page.seo} {...snakeToCamelObject(page.social)} />
           <Container>
             <Heading title={page.title} image={page.headingImage.asset.fluid} />
             <div className={styles.pageContent}>

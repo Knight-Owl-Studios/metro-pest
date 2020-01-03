@@ -1,5 +1,3 @@
-import { format } from 'date-fns'
-
 export function cn (...args) {
   return args.filter(Boolean).join(' ')
 }
@@ -26,4 +24,24 @@ export function buildImageObj (source) {
   if (source.hotspot) imageObj.hotspot = source.hotspot
 
   return imageObj
+}
+
+export function snakeToCamel(str = "") {
+
+  while(str.indexOf("_") !== -1) {
+    let index = str.indexOf("_");
+    str = str.slice(0, index) + str[index + 1].toUpperCase() + str.slice(index + 2);
+  }
+
+  return str;
+}
+
+export function snakeToCamelObject(obj = {}) {
+  if (!obj) { return {}; }
+  return Object.keys(obj).reduce(function(memo, key) {
+    return {
+      ...memo,
+      [snakeToCamel(key)]: obj[key]
+    }
+  }, {})
 }
