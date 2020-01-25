@@ -14,7 +14,7 @@ const NotFoundPage = () => (
       <div className={four04}>
         <h1 className={title1}>Page Not found</h1>
         <p className={paragraph}>Go back to the <a className={a} href="/">home page</a></p>
-        {typeof window !== undefined && window.history.back && <p className={paragraph}>or go back to the <a className={a} href="javascript:void(0)" onClick={() => window.history.back()}>previous page</a></p>}
+        <p className={paragraph}>or go back to the <a className={a} href="javascript:void(0)" onClick={() => window.history.back()}>previous page</a></p>
       </div>
     </Container>
   </Layout>
