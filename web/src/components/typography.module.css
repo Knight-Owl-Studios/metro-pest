@@ -198,4 +198,8 @@
   &:hover {
     opacity: 0.7;
   }
+
+  &:visited {
+    color: #afafaf;
+  }
 }
