@@ -4,7 +4,7 @@ import useFetch from 'use-http'
 import styles from './form.module.css'
 
 const Form = () => {
-  const { post } = useFetch(location.origin)
+  const { post } = useFetch()
   const form = React.useRef()
   const [error, setError] = React.useState(null)
   const [success, setSuccess] = React.useState(null)
