@@ -24,11 +24,13 @@ function SEO({ description, lang, meta, keywords = [], title, ogTitle, ogDescrip
           return
         }
         const metaDescription = description || data.site.seo.description
-        const metatTitle = title || data.site.seo.title;
+        const metaTitle = title || data.site.seo.title;
         const metaKeywords = keywords || data.site.seo.keywords;
+        
+        ogImage = ogImage || '/img/og-image.jpg'
 
         if (!ogTitle) {
-          ogTitle = metatTitle;
+          ogTitle = metaTitle;
         }
         if (!ogDescription) {
           ogDescription = metaDescription;
@@ -39,7 +41,7 @@ function SEO({ description, lang, meta, keywords = [], title, ogTitle, ogDescrip
             htmlAttributes={{
               lang
             }}
-            title={metatTitle}
+            title={metaTitle}
             meta={[
               {
                 name: 'description',
@@ -59,27 +61,15 @@ function SEO({ description, lang, meta, keywords = [], title, ogTitle, ogDescrip
               },
               {
                 property: 'og:image',
-                content: '/img/og-image.jpg'
+                content: ogImage
               },
               {
                 name: 'twitter:card',
-                content: 'summary'
+                content: 'summary_large_image'
               },
               {
                 name: 'twitter:creator',
                 content: data.site.author
-              },
-              {
-                name: 'twitter:title',
-                content: ogTitle
-              },
-              {
-                name: 'twitter:description',
-                content: metaDescription
-              },
-              {
-                name: 'twitter:image',
-                content: '/img/twitter-card.jpg'
               }
             ]
               .concat(

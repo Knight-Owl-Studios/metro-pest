@@ -1,10 +1,10 @@
-import PhoneIcon from 'react-icons/lib/fa/phone';
+import { FaPhoneAlt } from 'react-icons/fa';
 
 export default {
   type: "document",
   name: "phonenumber",
   title: "Phone Numbers",
-  icon: PhoneIcon,
+  icon: FaPhoneAlt,
   fields: [
     {
       type: "string",

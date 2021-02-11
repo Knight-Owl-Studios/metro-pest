@@ -1,10 +1,10 @@
-import icon from "react-icons/lib/fa/money";
+import { FaMoneyBill } from "react-icons/fa";
 
 export default {
   name: "specialOffer",
   title: "Special Offers",
   type: "document",
-  icon: icon,
+  icon: FaMoneyBill,
   fields: [
     {
       name: "title",

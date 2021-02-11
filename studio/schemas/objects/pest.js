@@ -1,10 +1,10 @@
-import bugIcon from "react-icons/lib/fa/bug";
+import { FaBug } from "react-icons/fa";
 
 export default {
   name: "pest",
   title: "Pests",
   type: "document",
-  icon: bugIcon,
+  icon: FaBug,
   fields: [
     {
       name: "name",

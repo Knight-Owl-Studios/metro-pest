@@ -14,7 +14,8 @@
 }
 
 .input,
-.submit {
+.submit,
+.textarea {
   display: block;
   flex: 1 1 100%;
   width: 100%;
@@ -42,6 +43,12 @@
   border: 1px solid #1d1f24;
 }
 
+.textarea {
+  border: 1px solid #1d1f24;
+  width: 100%;
+  min-height: 150px;
+}
+
 .submit {
   padding-bottom: 21px;
 
@@ -52,3 +59,20 @@
 
   opacity: 0.75;
 }
+
+.success {
+  background: #16702d;
+  color: white;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.error {
+  background: #8b0c0c;
+  color: white;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+

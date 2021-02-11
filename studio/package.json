@@ -13,15 +13,16 @@
     "test": "sanity check"
   },
   "dependencies": {
-    "@sanity/base": "^0.144.1",
-    "@sanity/components": "^0.144.2",
-    "@sanity/core": "^0.144.0",
-    "@sanity/default-layout": "^0.144.2",
-    "@sanity/default-login": "^0.144.0",
-    "@sanity/desk-tool": "^0.144.2",
+    "@sanity/base": "^2.0.9",
+    "@sanity/components": "^2.0.9",
+    "@sanity/core": "^2.0.9",
+    "@sanity/default-layout": "^2.0.9",
+    "@sanity/default-login": "^2.0.9",
+    "@sanity/desk-tool": "^2.0.9",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "react-icons": "^4.1.0"
   },
   "devDependencies": {
     "eslint": "^5.11.1",

@@ -1,8 +1,8 @@
 {
   "private": false,
-  "name": "example-company-website-gatsby-sanity-combo",
+  "name": "metropest.com",
   "version": "1.0.0",
-  "author": "Sanity <hello@sanity.io>",
+  "author": "TJ Simons <t.simons88@gmail.com>",
   "scripts": {
     "clean": "lerna clean",
     "deploy": "lerna run deploy",
@@ -23,6 +23,8 @@
     "rimraf": "^2.6.3"
   },
   "dependencies": {
+    "nodemailer": "^6.4.17",
+    "react-html-email": "^3.0.0",
     "stripe": "^7.8.0"
   }
 }

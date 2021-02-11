@@ -14,39 +14,43 @@
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "dependencies": {
-    "@sanity/block-content-to-react": "^2.0.6",
-    "@sanity/image-url": "^0.140.0",
-    "axios": "^0.19.0",
+    "@sanity/block-content-to-react": "^2.0.7",
+    "@sanity/image-url": "^0.140.19",
+    "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "date-fns": "^1.30.1",
     "dotenv": "^6.2.0",
-    "evergreen-ui": "^4.18.1",
-    "gatsby": "^2.13.74",
-    "gatsby-image": "^2.0.29",
+    "evergreen-ui": "^4.29.1",
+    "gatsby": "^2.28.1",
+    "gatsby-image": "^2.7.0",
     "gatsby-plugin-google-analytics": "^2.1.31",
-    "gatsby-plugin-postcss": "^2.0.2",
-    "gatsby-plugin-react-helmet": "^3.0.2",
-    "gatsby-source-sanity": "^5.0.2",
+    "gatsby-plugin-postcss": "^2.3.13",
+    "gatsby-plugin-react-helmet": "^3.6.0",
+    "gatsby-source-sanity": "^5.0.6",
     "postcss-import": "^12.0.1",
-    "postcss-preset-env": "^6.5.0",
-    "react": "^16.8.0-alpha.0",
-    "react-dom": "^16.8.0-alpha.0",
-    "react-helmet": "^5.2.0",
-    "react-stripe-elements": "^3.0.0",
-    "react-transition-group": "^4.2.2",
-    "reset.css": "^2.0.2"
+    "postcss-preset-env": "^6.7.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^5.2.1",
+    "react-stripe-elements": "^3.0.1",
+    "react-transition-group": "^4.4.1",
+    "reset.css": "^2.0.2",
+    "use-http": "^1.0.16"
   },
   "devDependencies": {
-    "eslint": "^5.11.1",
+    "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-config-standard-react": "^7.0.2",
-    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^8.0.0",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-react": "^7.12.2",
-    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-standard": "^4.1.0",
     "postcss-extend-rule": "^2.0.0",
-    "postcss-nested": "^4.1.1",
-    "prettier-eslint-cli": "^4.7.1"
-  }
+    "postcss-nested": "^4.2.3",
+    "prettier-eslint-cli": "^5.0.0"
+  },
+  "browserslist": [
+    ">=5%"
+  ]
 }

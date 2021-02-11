@@ -1,4 +1,4 @@
-import MdSettings from "react-icons/lib/md/settings";
+import { MdSettings } from "react-icons/md";
 
 export default {
   name: "siteSettings",

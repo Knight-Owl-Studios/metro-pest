@@ -30,11 +30,15 @@ class CheckoutForm extends Component {
     onLoading(true)
 
     try {
-      await stripe.handleCardPayment(paymentIntent.client_secret, {
+      const result = await stripe.handleCardPayment(paymentIntent.client_secret, {
         receipt_email: this.state.email
       })
-      this.setState({ isSuccess: true, isError: false, error: null })
-      onSuccess(this.state.email)
+
+      if (!result.error) {
+
+        this.setState({ isSuccess: true, isError: false, error: null })
+        onSuccess(this.state.email)
+      }
     } catch (err) {
       this.setState({ isError: true, error: err, isSuccess: false })
       onError('all', err.message)
