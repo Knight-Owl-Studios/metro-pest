@@ -1,9 +1,8 @@
+const cors = require('micro-cors')
 const nm = require('nodemailer')
 
-module.exports = function(req, res) {
+module.exports = cors()(function(req, res) {
     const { body } = req
-
-    console.log(process.env)
     
     return res.send(200, { "status": "success" })
 
@@ -33,4 +32,4 @@ module.exports = function(req, res) {
 
         res.send(200, `{ "status": "success" }`)
     })
-}
+})

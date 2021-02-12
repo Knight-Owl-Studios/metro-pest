@@ -79,6 +79,10 @@
       margin-top: 40px;
     }
   }
+
+  @media (--media-min-xxl) {
+    margin: 0 140px;
+  }
 }
 
 .phone {

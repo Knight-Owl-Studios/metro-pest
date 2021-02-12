@@ -1,40 +1,36 @@
 import React from 'react'
 import useFetch from 'use-http'
+import classNames from 'classnames'
 
 import styles from './form.module.css'
 
 const Form = () => {
-  const { post } = useFetch()
+  const { post, response, loading, error } = useFetch('https://metro-pest-website-g6vz3lffa.vercel.app')
   const form = React.useRef()
-  const [error, setError] = React.useState(null)
-  const [success, setSuccess] = React.useState(null)
 
-  const onSubmit = React.useCallback(async (e) => {
+  const onSubmit = React.useCallback((e) => {
     e.preventDefault()
 
-    const body = Array.from(form.current.querySelector('input')).reduce((acc, input) => ({
+    const body = Array.from(form.current.querySelectorAll('input, textarea')).reduce((acc, input) => ({
       ...acc,
       [input.name]: input.value
     }), {})
-    
-    try {
-      const response = await post('/api/email', body)
-      setSuccess(true)
-    } catch (err) {
-      setError(true)
-    }
+
+    post('/api/email', body)
   }, [])
 
   return (
     <section className={styles.container} onSubmit={onSubmit}>
-      {success && <div className={styles.success}>Form submitted successfully!</div>}
+      {response && response.status === 'success' && <div className={styles.success}>Form submitted successfully!</div>}
       {error && <div className={styles.error}>Error submitting form. Try again later, or give us a call at 952-890-6007</div>}
-      <form className={styles.form} ref={form}>
-        <input type="text" className={styles.input} placeholder="Name" />
-        <input type="email" className={styles.input} placeholder="Email" />
-        <input type="phone" className={styles.input} placeholder="Phone number" />
-        <textarea name="problem" className={styles.textarea} placeholder="Pest problem"></textarea>
-        <button type="submit" className={styles.submit}>
+      <form className={classNames(styles.form, {
+        'loading': loading
+      })} ref={form} disabled={loading ? "disabled" : undefined}>
+        <input type="text" name="Name" className={styles.input} placeholder="Name" />
+        <input type="email" name="Email" className={styles.input} placeholder="Email" />
+        <input type="phone" name="Phone Number" className={styles.input} placeholder="Phone number" />
+        <textarea name="problem" name="Pest Problem" className={styles.textarea} placeholder="Pest problem"></textarea>
+        <button type="submit" className={styles.submit} disabled={loading ? "disabled" : undefined}>
           Request Service
         </button>
       </form>
