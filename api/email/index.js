@@ -3,8 +3,6 @@ const nm = require('nodemailer')
 
 module.exports = cors()(function(req, res) {
     const { body } = req
-    
-    return res.send(200, { "status": "success" })
 
     const transporter = nm.createTransport({
         host: process.env.SMTP_HOST,

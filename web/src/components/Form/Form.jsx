@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import styles from './form.module.css'
 
 const Form = () => {
-  const { post, response, loading, error } = useFetch('https://metro-pest-website-g6vz3lffa.vercel.app')
+  const { post, response, loading, error } = useFetch()
   const form = React.useRef()
 
   const onSubmit = React.useCallback((e) => {
