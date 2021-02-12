@@ -10,6 +10,8 @@ const Form = () => {
   const [success, setSuccess] = React.useState(null)
 
   const onSubmit = React.useCallback(async (e) => {
+    e.preventDefault()
+
     const body = Array.from(form.current.querySelector('input')).reduce((acc, input) => ({
       ...acc,
       [input.name]: input.value
