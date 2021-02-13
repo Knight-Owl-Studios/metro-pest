@@ -25,9 +25,10 @@ module.exports = cors()(function(req, res) {
 
     transporter.sendMail(mail, (error) => {
         if (error) {
-            return res.send(500, error.message)
+            console.error(error)
+            return res.status(500).send(`{ "error": ${error.message} }`)
         }
 
-        res.send(200, `{ "status": "success" }`)
+        res.status(200).send(`{ "status": "success" }`)
     })
 })
