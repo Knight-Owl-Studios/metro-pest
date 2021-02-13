@@ -1,4 +1,4 @@
-import External from 'react-icons/lib/fa/external-link'
+import { FaExternalLinkAlt } from 'react-icons/fa'
 
 /**
  * This is the schema definition for the rich text fields used for
@@ -44,7 +44,7 @@ export default {
             name: 'link',
             type: 'object',
             blockEditor: {
-              icon: External
+              icon: FaExternalLinkAlt
             },
             fields: [
               {

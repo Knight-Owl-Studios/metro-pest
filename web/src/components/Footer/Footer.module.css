@@ -5,7 +5,6 @@
 
 .footer {
   @extend %dark-section;
-  margin-top: 2em;
 }
 
 .container {

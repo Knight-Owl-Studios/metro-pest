@@ -14,7 +14,11 @@
   ],
   "env": {
     "stripe_key": "@stripe_key",
-    "stripe_secret": "@stripe_secret"
+    "stripe_secret": "@stripe_secret",
+    "CONTACT_RECIPIENT": "@dev-email",
+    "SMTP_PASS": "@smtp-pass",
+    "SMTP_USER": "@smtp-user",
+    "SMTP_HOST": "smtp.gmail.com"
   },
   "alias": ["metro-pest-website.now.sh"],
   "routes": [

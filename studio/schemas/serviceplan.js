@@ -1,10 +1,10 @@
-import planIcon from "react-icons/lib/fa/clipboard";
+import { FaClipboard } from "react-icons/fa";
 
 export default {
   name: "serviceplan",
   title: "Service Plans",
   type: "document",
-  icon: planIcon,
+  icon: FaClipboard,
   fields: [
     {
       name: "name",

@@ -1,4 +1,5 @@
 @import '../../styles/media-queries.css';
+@import '../typography.module.css';
 
 .container {
   @media (--media-min-large) {
@@ -11,10 +12,16 @@
   flex-flow: column nowrap;
   justify-content: stretch;
   align-items: center;
+
+  &.loading {
+    opacity: .7;
+    pointer-events: none;
+  }
 }
 
 .input,
-.submit {
+.submit,
+.textarea {
   display: block;
   flex: 1 1 100%;
   width: 100%;
@@ -42,6 +49,12 @@
   border: 1px solid #1d1f24;
 }
 
+.textarea {
+  border: 1px solid #1d1f24;
+  width: 100%;
+  min-height: 150px;
+}
+
 .submit {
   padding-bottom: 21px;
 
@@ -52,3 +65,25 @@
 
   opacity: 0.75;
 }
+
+.success,
+.error {
+  @extend .small;
+
+  color: white;
+  padding: 8px 16px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+.success {
+  background: #16702d;
+  border: 1px solid #105822;
+}
+
+.error {
+  background: #8b0c0c;
+  border: 1px solid #5a0808;
+}
+

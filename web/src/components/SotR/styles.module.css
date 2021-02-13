@@ -23,13 +23,6 @@
 
 .content {
   @extend %section;
-
-  @media (--media-min-large) {
-    margin: 0 10vw;
-  }
-
-  @media (--media-min-xxl) {
-      margin: 0 150px;
-  }
+  margin: 0 auto;
 }
 

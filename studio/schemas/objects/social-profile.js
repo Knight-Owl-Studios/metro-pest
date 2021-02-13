@@ -1,10 +1,10 @@
-import ShareIcon from 'react-icons/lib/fa/share-square'
+import { FaShareAlt } from 'react-icons/fa'
 
 export default {
   name: 'socialProfiles',
   title: 'Social Profiles',
   type: 'document',
-  icon: ShareIcon,
+  icon: FaShareAlt,
   fields: [
     {
       name: 'site',
