@@ -12,7 +12,7 @@ export function filterOutDocsWithoutSlugs ({ slug }) {
 }
 
 export function getBlogUrl (publishedAt, slug) {
-  return `/blog/${slug.current || slug}/`
+  return `/${slug.current || slug}/`
 }
 
 export function buildImageObj (source) {
