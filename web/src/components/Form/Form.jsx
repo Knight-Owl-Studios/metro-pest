@@ -1,4 +1,5 @@
 import React from 'react'
+import 'whatwg-fetch'
 import useFetch from 'use-http'
 import classNames from 'classnames'
 
