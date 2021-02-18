@@ -22,7 +22,7 @@ const Form = () => {
 
   return (
     <section className={styles.container} onSubmit={onSubmit}>
-      {response && response.status === 'success' && <div className={styles.success}>Form submitted successfully!</div>}
+      {response && response.ok && <div className={styles.success}>Form submitted successfully!</div>}
       {error && <div className={styles.error}>Error submitting form. Try again later, or give us a call at 952-890-6007</div>}
       <form className={classNames(styles.form, {
         'loading': loading
