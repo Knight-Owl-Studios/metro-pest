@@ -1,24 +1,27 @@
 import BaseBlockContent from '@sanity/block-content-to-react'
 import React from 'react'
-import classNames from 'classnames';
+import classNames from 'classnames'
 
 import Figure from './figure'
 import Slideshow from './slideshow'
-
 
 import typography from '../typography.module.css'
 
 const serializers = {
   marks: {
-    link(props) {
-      return <a className={typography.a} href={props.mark.href} key={props.mark._key}>{props.children}</a>
+    link (props) {
+      return (
+        <a className={typography.a} href={props.mark.href} key={props.mark._key}>
+          {props.children}
+        </a>
+      )
     }
   },
   list ({ children }) {
     return <ul className={typography.list}>{children}</ul>
   },
-  listItem({ listItem, children }) {
-    return <li className={typography.li}>{children}</li>;
+  listItem ({ listItem, children }) {
+    return <li className={typography.li}>{children}</li>
   },
   types: {
     block (props) {
@@ -54,6 +57,8 @@ const serializers = {
   }
 }
 
-const BlockContent = ({ blocks, className }) => <BaseBlockContent blocks={blocks} serializers={serializers} />
+const BlockContent = ({ blocks, className }) => (
+  <BaseBlockContent blocks={blocks} serializers={serializers} />
+)
 
 export default BlockContent

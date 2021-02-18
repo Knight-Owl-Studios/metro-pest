@@ -16,18 +16,17 @@ const detailsQuery = graphql`
   }
 `
 
-function SEO({ description, lang, meta, keywords = [], title, ogTitle, ogDescription, ogImage }) {
-
+function SEO ({ description, lang, meta, keywords = [], title, ogTitle, ogDescription, ogImage }) {
   return (
     <StaticQuery
       query={detailsQuery}
-      render={data => {
+      render={(data) => {
         if (!data.site) {
           return
         }
         const metaDescription = description || data.site.seo.description
-        const metaTitle = title || data.site.seo.title;
-        const metaKeywords = keywords || data.site.seo.keywords;
+        const metaTitle = title || data.site.seo.title
+        const metaKeywords = keywords || data.site.seo.keywords
         let socialImage = data.site.social.og_image.asset.url
 
         if (ogImage) {
@@ -39,10 +38,10 @@ function SEO({ description, lang, meta, keywords = [], title, ogTitle, ogDescrip
         }
 
         if (!ogTitle) {
-          ogTitle = data.site.social.og_title;
+          ogTitle = data.site.social.og_title
         }
         if (!ogDescription) {
-          ogDescription = data.site.social.og_description;
+          ogDescription = data.site.social.og_description
         }
 
         return (
@@ -84,9 +83,9 @@ function SEO({ description, lang, meta, keywords = [], title, ogTitle, ogDescrip
               .concat(
                 metaKeywords && metaKeywords.length > 0
                   ? {
-                      name: 'keywords',
-                      content: metaKeywords.join(', ')
-                    }
+                    name: 'keywords',
+                    content: metaKeywords.join(', ')
+                  }
                   : []
               )
               .concat(meta)}

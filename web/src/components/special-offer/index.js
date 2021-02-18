@@ -1,4 +1,4 @@
-import SpecialOffer from './special-offer';
-import SpecialOffers from './special-offers';
+import SpecialOffer from './special-offer'
+import SpecialOffers from './special-offers'
 
-export { SpecialOffer, SpecialOffers };
+export { SpecialOffer, SpecialOffers }

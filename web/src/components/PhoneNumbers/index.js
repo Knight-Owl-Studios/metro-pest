@@ -1,2 +1,2 @@
-import PhoneNumbers from "./PhoneNumbers";
-export default PhoneNumbers;
+import PhoneNumbers from './PhoneNumbers'
+export default PhoneNumbers

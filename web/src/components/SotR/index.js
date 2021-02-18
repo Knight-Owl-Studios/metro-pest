@@ -1,2 +1,2 @@
-import SotR from "./SotR";
-export default SotR;
+import SotR from './SotR'
+export default SotR

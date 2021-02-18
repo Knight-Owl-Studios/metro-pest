@@ -1,2 +1,2 @@
-import PaymentForm from './PaymentForm.jsx';
-export default PaymentForm;
+import PaymentForm from './PaymentForm.jsx'
+export default PaymentForm

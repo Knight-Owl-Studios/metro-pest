@@ -1,2 +1,2 @@
-import Safety from "./Safety";
-export default Safety;
+import Safety from './Safety'
+export default Safety

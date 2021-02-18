@@ -4,7 +4,7 @@ export function cn (...args) {
 
 export function mapEdgesToNodes (data) {
   if (!data.edges) return []
-  return data.edges.map(edge => edge.node)
+  return data.edges.map((edge) => edge.node)
 }
 
 export function filterOutDocsWithoutSlugs ({ slug }) {
@@ -26,19 +26,20 @@ export function buildImageObj (source) {
   return imageObj
 }
 
-export function snakeToCamel(str = "") {
-
-  while(str.indexOf("_") !== -1) {
-    let index = str.indexOf("_");
-    str = str.slice(0, index) + str[index + 1].toUpperCase() + str.slice(index + 2);
+export function snakeToCamel (str = '') {
+  while (str.indexOf('_') !== -1) {
+    let index = str.indexOf('_')
+    str = str.slice(0, index) + str[index + 1].toUpperCase() + str.slice(index + 2)
   }
 
-  return str;
+  return str
 }
 
-export function snakeToCamelObject(obj = {}) {
-  if (!obj) { return {}; }
-  return Object.keys(obj).reduce(function(memo, key) {
+export function snakeToCamelObject (obj = {}) {
+  if (!obj) {
+    return {}
+  }
+  return Object.keys(obj).reduce(function (memo, key) {
     return {
       ...memo,
       [snakeToCamel(key)]: obj[key]
