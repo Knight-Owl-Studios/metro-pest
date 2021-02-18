@@ -7,15 +7,17 @@ const detailsQuery = graphql`
   query SEOQuery {
     site: sanitySiteSettings {
       seo {
-        title
-        description
-        keywords
+        ...SEOFragment
+      }
+      social {
+        ...SocialFragment
       }
     }
   }
 `
 
 function SEO({ description, lang, meta, keywords = [], title, ogTitle, ogDescription, ogImage }) {
+
   return (
     <StaticQuery
       query={detailsQuery}
@@ -26,14 +28,21 @@ function SEO({ description, lang, meta, keywords = [], title, ogTitle, ogDescrip
         const metaDescription = description || data.site.seo.description
         const metaTitle = title || data.site.seo.title;
         const metaKeywords = keywords || data.site.seo.keywords;
-        
-        ogImage = ogImage || '/img/og-image.jpg'
+        let socialImage = data.site.social.og_image.asset.url
+
+        if (ogImage) {
+          socialImage = ogImage
+
+          if (ogImage.asset && ogImage.asset.url) {
+            socialImage = ogImage.asset.url
+          }
+        }
 
         if (!ogTitle) {
-          ogTitle = metaTitle;
+          ogTitle = data.site.social.og_title;
         }
         if (!ogDescription) {
-          ogDescription = metaDescription;
+          ogDescription = data.site.social.og_description;
         }
 
         return (
@@ -61,7 +70,7 @@ function SEO({ description, lang, meta, keywords = [], title, ogTitle, ogDescrip
               },
               {
                 property: 'og:image',
-                content: ogImage
+                content: socialImage
               },
               {
                 name: 'twitter:card',

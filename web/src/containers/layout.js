@@ -64,7 +64,7 @@ const links = [
   { path: '/special-offers', title: "Special Offers" },
   { path: '/services', title: "Services" },
   { path: '/payments', title: "Payments" },
-  { path: '/blog', title: "Blog" }
+  { path: '/category/blog', title: "Blog" }
 ];
 
 function LayoutContainer(props) {

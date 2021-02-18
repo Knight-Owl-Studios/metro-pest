@@ -18,6 +18,11 @@ export default {
       name: "seo",
       title: "Default SEO Settings",
       type: "seo"
+    },
+    {
+      name: "social",
+      title: "Default social share settings",
+      type: "social"
     }
   ],
   preview: {

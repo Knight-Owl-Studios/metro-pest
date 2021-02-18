@@ -19,7 +19,7 @@ module.exports = cors()(function(req, res) {
     const mail = {
         from: 'No Reply <noreply@metro-pest.com>',
         to: process.env.CONTACT_RECIPIENT,
-        subject: `Website contact request [${body.name}]`,
+        subject: `Website contact request [${body.Name || 'Anonymous'}]`,
         text
     }
 
