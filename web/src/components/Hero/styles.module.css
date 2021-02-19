@@ -4,7 +4,7 @@
 .base {
   @extend %dark-bg;
 
-  width: 100vw;
+  width: 100%;
   min-height: calc(100vh - 70px);
 
   position: relative;
