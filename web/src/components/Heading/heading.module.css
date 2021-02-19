@@ -18,8 +18,14 @@
   width: 100%;
 
   object-fit: cover;
-
+  object-position: center right;
+  
   z-index: 1;
+  
+  img {
+    object-fit: cover;
+    object-position: center right!important;
+  }
 }
 
 .heading {

@@ -1,4 +1,5 @@
 @import '../../styles/dark-theme.css';
+@import '../../styles/media-queries.css';
 
 .base {
   @extend %dark-bg;
@@ -19,6 +20,12 @@
   position: absolute !important;
   pointer-events: none;
   z-index: -1;
+
+  @media(--media-max-large) {
+    img {
+      object-position: -150px center !important;
+    }
+  }
 }
 
 .content {

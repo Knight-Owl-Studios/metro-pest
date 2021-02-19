@@ -27,9 +27,9 @@ const Form = () => {
       <form className={classNames(styles.form, {
         'loading': loading
       })} ref={form} disabled={loading ? "disabled" : undefined}>
-        <input type="text" name="Name" className={styles.input} placeholder="Name" />
+        <input type="text" name="Name" className={styles.input} placeholder="Name" required />
         <input type="email" name="Email" className={styles.input} placeholder="Email" />
-        <input type="phone" name="Phone Number" className={styles.input} placeholder="Phone number" />
+        <input type="phone" name="Phone Number" className={styles.input} placeholder="Phone number" required />
         <textarea name="problem" name="Pest Problem" className={styles.textarea} placeholder="Pest problem"></textarea>
         <button type="submit" className={styles.submit} disabled={loading ? "disabled" : undefined}>
           Request Service
