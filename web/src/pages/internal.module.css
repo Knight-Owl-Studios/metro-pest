@@ -38,3 +38,27 @@
   justify-content: center;
   text-align: center;  
 }
+
+.paymentButton {
+	display: inline-block;
+	padding: 16px 31px;
+  margin-top: 32px;
+
+  background: #58b146;
+	border-radius: 6px;
+	border: 1px solid #3f8c2f;
+
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 17px;
+	text-decoration: none;
+
+  &:hover {
+    background: #58b146;
+  }
+
+  &:active {
+    position: relative;
+    top: 1px;
+  }
+}

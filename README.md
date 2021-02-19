@@ -1,6 +1,28 @@
-# A sample company website built with [Gatsby](https://www.gatsbyjs.org/) & [Sanity.io](https://www.sanity.io)
+# Third-party services
 
-This examples combines [Gatsby](https://www.gatsbyjs.org/) site generation with [Sanity](https://www.sanity.io) content management in a neat little company website. Read [the blog post](https://www.sanity.io/blog/get-started-with-gatsby-and-structured-content) and [see the getting started video](https://www.youtube.com/watch?v=qU4lFYp3KiQ).
+## Content Management System (CMS)
+
+[Sanity CMS](https://metro-pest.sanity.studio/desk)
+
+The content for the website is editable at the above link using sanity headless CMS.
+
+## Website static framework
+
+### Code
+
+Gatsby + React is used to build the pages of the site. When a change is needed from the CMS, or code, a build will occur that downloads all of the data needed for the site, and assembles the markup for the pages. Performing this step ahead of time makes the website load insanely fast, but requires more effort to host the project.
+
+### Deploys
+
+When content is updated in the CMS, or a code change is pushed, [Gatsby Cloud](https://www.gatsbyjs.com/dashboard/e8206812-9557-4a10-83b4-affdbc34acef/sites/ebf94498-ecf8-441e-b049-ddd16a2af4a4/deploys) detects the change via the sanity and github integrations. It will immeditaly begin building the project, and create a preview URL to make sure the changes look good. Upon reviewing the change, login to [Vercel](https://vercel.com/knight-owl-studios/metro-pest-website/deployments) to promote the build to production.
+
+## Hosting
+
+The website is hosted and built on Vercel. This is responsible for serving content from the domain, and 
+
+# Gatsby + Sanity details
+
+This combines [Gatsby](https://www.gatsbyjs.org/) site generation with [Sanity](https://www.sanity.io) content management in a neat little company website. Read [the blog post](https://www.sanity.io/blog/get-started-with-gatsby-and-structured-content) and [see the getting started video](https://www.youtube.com/watch?v=qU4lFYp3KiQ).
 
 - [Features](#features)
 - [Installation](#installation)

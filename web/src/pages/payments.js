@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
 
 import { snakeToCamelObject } from '../lib/helpers'
-import useScript from '../lib/helpers'
 
 import Container from '../components/container'
-import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Heading from '../components/Heading'
-
+import BlockContent from '../components/block-content'
 import Layout from '../containers/layout'
+
+import styles from './internal.module.css'
 
 export const query = graphql`
   query PaymentPageQuery {
@@ -35,42 +35,8 @@ export const query = graphql`
   }
 `
 
-const PAYMENT_OPTIONS = {
-  iframeHelperURL: 'https://example.com/helper.html',
-  url: 'https://payments.worldpay.com/ngpp/integration/wpg/corporate?OrderKey=YOUR_ORDER_KEY&Ticket=YOUR_TICKET_ID',
-  type: 'iframe',
-  inject: 'onload',
-  target: 'paymentForm',
-  accessibility: true,
-  debug: false,
-  language: 'en',
-  country: 'US',
-  preferredPaymentMethod: 'VISA-SSL',
-  successURL: '/success',
-  cancelURL: '/cancel',
-  failureURL: '/failure',
-  pendingURL: '/pending',
-  errorURL: '/error'
-}
 
-const PaymentPage = ({ data, errors }) => {
-  const status = useScript('https://payments.worldpay.com/resources/hpp/integrations/embedded/js/hpp-embedded-integration-library.js')
-  const [init, setInit] = useState(false)
-
-  useEffect(() => {
-    if (!init && status === 'ready' && typeof window.WPCL !== undefined) {
-
-    }
-  }, [status])
-
-  if (errors) {
-    return (
-      <Layout>
-        <GraphQLErrorList errors={errors} />
-      </Layout>
-    )
-  }
-
+const PaymentPage = ({ data }) => {
   const page = data && data.page
 
   if (!page) {
@@ -84,7 +50,11 @@ const PaymentPage = ({ data, errors }) => {
       <SEO {...page.seo} {...snakeToCamelObject(page.social)} />
       <Container>
         <Heading title={page.title} image={page.headingImage.asset.fluid} />
-        <div id="paymentForm"></div>
+        <div className={styles.pageContent}>
+          <BlockContent blocks={page._rawBody || []} />
+
+          <a href="https://metropest.briostack.com" target="_blank" className={styles.paymentButton}>Pay my bill</a>
+        </div>
       </Container>
     </Layout>
   )
