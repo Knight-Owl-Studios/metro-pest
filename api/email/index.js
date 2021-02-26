@@ -1,7 +1,7 @@
 const cors = require('micro-cors')
 const nm = require('nodemailer')
 
-module.exports = cors()(function(req, res) {
+module.exports = cors()(function (req, res) {
     const { body } = req
 
     const transporter = nm.createTransport({
@@ -12,12 +12,12 @@ module.exports = cors()(function(req, res) {
         }
     })
 
-    const text = Object.entries(body).reduce((acc, [key, value]) => 
+    const text = Object.entries(body).reduce((acc, [key, value]) =>
         `${acc}\n${key}: ${value}\n`
-    , '')
-    
+        , '')
+
     const mail = {
-        from: 'No Reply <noreply@metro-pest.com>',
+        from: 'Website Request <info@pepisandbox.com>',
         to: process.env.CONTACT_RECIPIENT,
         subject: `Website contact request [${body.Name || 'Anonymous'}]`,
         text
