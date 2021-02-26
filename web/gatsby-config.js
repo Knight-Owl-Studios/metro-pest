@@ -5,7 +5,16 @@ const {
 require('dotenv').config()
 
 module.exports = {
+  siteMetadata: {
+    siteUrl: `https://www.metro-pest.com`,
+  },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        output: '/sitemap.xml'
+      }
+    },
     'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
     {
