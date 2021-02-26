@@ -52,8 +52,6 @@ const PaymentPage = ({ data }) => {
         <Heading title={page.title} image={page.headingImage.asset.fluid} />
         <div className={styles.pageContent}>
           <BlockContent blocks={page._rawBody || []} />
-
-          <a href="https://metropest.briostack.com" target="_blank" className={styles.paymentButton}>Pay my bill</a>
         </div>
       </Container>
     </Layout>
