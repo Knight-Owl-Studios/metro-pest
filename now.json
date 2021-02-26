@@ -18,7 +18,7 @@
     "CONTACT_RECIPIENT": "@metro-pest-email",
     "SMTP_PASS": "@smtp-pass",
     "SMTP_USER": "@smtp-user",
-    "SMTP_HOST": "smtp.gmail.com"
+    "SMTP_HOST": "smtp.pepipost.com"
   },
   "alias": [
     "metro-pest.now.sh"
