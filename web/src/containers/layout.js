@@ -59,11 +59,11 @@ const query = graphql`
 
 const links = [
   { path: '/', title: "Home", mobile: true },
-  { path: '/contact-us', title: "Contact" },
-  { path: '/about', title: "About" },
-  { path: '/special-offers', title: "Special Offers" },
-  { path: '/services', title: "Services" },
-  { path: '/payments', title: "Payments" },
+  { path: '/contact-us/', title: "Contact" },
+  { path: '/about-us/', title: "About" },
+  { path: '/special-offer/', title: "Special Offers" },
+  { path: '/pest-control-services/', title: "Services" },
+  { path: '/make-a-payment/', title: "Payments" },
   { path: '/category/blog', title: "Blog" }
 ];
 
