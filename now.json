@@ -15,7 +15,7 @@
     }
   ],
   "env": {
-    "CONTACT_RECIPIENT": "@dev-email",
+    "CONTACT_RECIPIENT": "@metro-pest-email",
     "SMTP_PASS": "@smtp-pass",
     "SMTP_USER": "@smtp-user",
     "SMTP_HOST": "smtp.gmail.com"
