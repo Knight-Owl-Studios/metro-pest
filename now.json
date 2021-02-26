@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "metro-pest-website",
+  "name": "metro-pest",
   "builds": [
     {
       "src": "web/package.json",
@@ -21,7 +21,7 @@
     "SMTP_HOST": "smtp.gmail.com"
   },
   "alias": [
-    "metro-pest-website.now.sh"
+    "metro-pest.now.sh"
   ],
   "routes": [
     {
