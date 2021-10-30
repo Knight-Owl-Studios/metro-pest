@@ -14,14 +14,14 @@ const Form = () => {
   const onSubmit = React.useCallback(async (e) => {
     e.preventDefault()
 
-    const token = await captcha.current.executeAsync()
+    await captcha.current.executeAsync()
 
     const body = Array.from(form.current.querySelectorAll('input, textarea')).reduce((acc, input) => ({
       ...acc,
       [input.name]: input.value
     }), {})
 
-    post('/api/email', { ...body, captchaToken: token })
+    post('/api/email', body)
   }, [captcha, form])
 
   return (

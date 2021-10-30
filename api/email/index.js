@@ -27,11 +27,12 @@ async function verifyCaptcha(response, remoteIp) {
 }
 
 module.exports = cors()(async function (req, res) {
-  const {
-    body: { captchaToken, ...body },
-  } = req;
+  const { body } = req;
 
-  const success = await verifyCaptcha(captchaToken, requestip.getClientIp(req));
+  const success = await verifyCaptcha(
+    body["g-recaptcha-response"],
+    requestip.getClientIp(req)
+  );
 
   const transporter = nm.createTransport({
     host: process.env.SMTP_HOST,
@@ -41,10 +42,9 @@ module.exports = cors()(async function (req, res) {
     },
   });
 
-  const text = Object.entries(body).reduce(
-    (acc, [key, value]) => `${acc}\n${key}: ${value}\n`,
-    ""
-  );
+  const text = Object.entries(body)
+    .filter(([key]) => !key.includes("captcha"))
+    .reduce((acc, [key, value]) => `${acc}\n${key}: ${value}\n`, "");
 
   const mail = {
     from: "Website Request <info@pepisandbox.com>",
