@@ -10,6 +10,10 @@ async function verifyCaptcha(response, remoteIp) {
     remoteIp,
   };
 
+  console.log(response);
+  console.log(remoteIp);
+  console.log(typeof process.env.RECAPTCHA_SECRET_KEY);
+
   try {
     const res = await axios.post(
       "https://www.google.com/recaptcha/api/siteverify",
@@ -33,6 +37,8 @@ module.exports = cors()(async function (req, res) {
     body["g-recaptcha-response"],
     requestip.getClientIp(req)
   );
+
+  console.log(`Captcha success: ${success}`);
 
   const transporter = nm.createTransport({
     host: process.env.SMTP_HOST,
