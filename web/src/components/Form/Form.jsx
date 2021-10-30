@@ -2,23 +2,27 @@ import React from 'react'
 import 'whatwg-fetch'
 import useFetch from 'use-http'
 import classNames from 'classnames'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 import styles from './form.module.css'
 
 const Form = () => {
   const { post, response, loading, error } = useFetch()
   const form = React.useRef()
+  const captcha = React.useRef()
 
-  const onSubmit = React.useCallback((e) => {
+  const onSubmit = React.useCallback(async (e) => {
     e.preventDefault()
+
+    const token = await captcha.current.executeAsync()
 
     const body = Array.from(form.current.querySelectorAll('input, textarea')).reduce((acc, input) => ({
       ...acc,
       [input.name]: input.value
     }), {})
 
-    post('/api/email', body)
-  }, [])
+    post('/api/email', { ...body, captchaToken: token })
+  }, [captcha, form])
 
   return (
     <section className={styles.container} onSubmit={onSubmit}>
@@ -32,6 +36,7 @@ const Form = () => {
         <input type="phone" name="Phone Number" className={styles.input} placeholder="Phone number*" required />
         <input type="text" name="City" className={styles.input} placeholder="City of service*" required />
         <textarea name="problem" name="Pest Problem" className={styles.textarea} placeholder="Pest problem"></textarea>
+        <ReCAPTCHA ref={captcha} sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY} size="invisible" />
         <button type="submit" className={styles.submit} disabled={loading ? "disabled" : undefined}>
           Request Service
         </button>

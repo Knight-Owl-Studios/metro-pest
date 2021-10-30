@@ -78,7 +78,7 @@ export const query = graphql`
   }
 `
 
-export const IndexPage = ({ data, errors }) => {
+const IndexPage = ({ data, errors }) => {
   if (errors) {
     return (
       <Layout>
