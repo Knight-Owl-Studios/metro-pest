@@ -1,33 +1,37 @@
 const cors = require("micro-cors");
 const nm = require("nodemailer");
-const axios = require('axios')
-const requestip = require('request-ip')
+const axios = require("axios");
+const requestip = require("request-ip");
 
 async function verifyCaptcha(response, remoteIp) {
   const verifyBody = {
     secret: process.env.RECAPTCHA_SECRET_KEY,
     response,
-    remoteIp
-  }
+    remoteIp,
+  };
 
   try {
-    const res = await axios.post('https://www.google.com/recaptcha/api/siteverify', {
-      body: JSON.stringify(verifyBody)
-    })
+    const res = await axios.post(
+      "https://www.google.com/recaptcha/api/siteverify",
+      {
+        body: JSON.stringify(verifyBody),
+      }
+    );
 
-    return res.data.success
+    return res.data.success;
   } catch (err) {
-    console.error(`recaptcha failed: ${err}`) // send to datadog
+    console.error(`recaptcha failed: ${err}`); // send to datadog
     // api service errored, we don't want to lose real requests
     return true;
   }
 }
 
-
 module.exports = cors()(async function (req, res) {
-  const { body: { ...body, captchaToken } } = req;
+  const {
+    body: { captchaToken, ...body },
+  } = req;
 
-  const success = await verifyCaptcha(captchaToken, requestip(req))
+  const success = await verifyCaptcha(captchaToken, requestip(req));
 
   const transporter = nm.createTransport({
     host: process.env.SMTP_HOST,
@@ -45,7 +49,9 @@ module.exports = cors()(async function (req, res) {
   const mail = {
     from: "Website Request <info@pepisandbox.com>",
     to: process.env.CONTACT_RECIPIENT,
-    subject: `${success ? '' : '[spam detected]'} Website contact request [${body.Name || "Anonymous"}]`,
+    subject: `${success ? "" : "[spam detected]"} Website contact request [${
+      body.Name || "Anonymous"
+    }]`,
     text,
   };
 
