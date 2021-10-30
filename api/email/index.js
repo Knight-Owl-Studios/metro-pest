@@ -31,7 +31,7 @@ module.exports = cors()(async function (req, res) {
     body: { captchaToken, ...body },
   } = req;
 
-  const success = await verifyCaptcha(captchaToken, requestip(req));
+  const success = await verifyCaptcha(captchaToken, requestip.getClientIp(req));
 
   const transporter = nm.createTransport({
     host: process.env.SMTP_HOST,
